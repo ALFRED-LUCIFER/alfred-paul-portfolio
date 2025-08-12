@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Alfred Paul - Team Leader AI Engineering Portfolio Frontend",
   "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "tsc -b && vite build",

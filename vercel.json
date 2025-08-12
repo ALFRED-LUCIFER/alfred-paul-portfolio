@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "buildCommand": "cd apps/web && pnpm install && pnpm run build",
+  "outputDirectory": "apps/web/dist",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": null,
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
