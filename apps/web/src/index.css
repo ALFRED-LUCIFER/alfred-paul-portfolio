@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Rich Theme - Professional Design with Better Contrast */
+    --background: 220 13% 18%; /* #2a2f3a - Rich Dark Gray Background */
+    --foreground: 0 0% 100%; /* #ffffff - Pure White Text Primary */
+    --card: 220 13% 21%; /* #313642 - Card Background (Slightly Lighter) */
+    --card-foreground: 0 0% 100%; /* #ffffff - Pure white text on cards */
+    --popover: 220 13% 21%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 140 75% 53%; /* #28e98c - Drake Green (Primary) */
+    --primary-foreground: 0 0% 0%; /* Black text on green buttons */
+    --secondary: 220 13% 25%; /* #383e4a - Secondary elements */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 13% 23%; /* #343a47 - Muted backgrounds */
+    --muted-foreground: 0 0% 75%; /* #bfbfbf - Light Gray for secondary text */
+    --accent: 140 75% 53%; /* #28e98c - Same as primary */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%; /* Red for errors */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 30%; /* #424857 - Lighter borders for visibility */
+    --input: 220 13% 23%; /* #343a47 - Input backgrounds */
+    --ring: 140 75% 53%; /* #28e98c - Drake Green for focus rings */
+    --radius: 0.5rem;
+    
+    /* Drake Alternative Colors (available for accents) */
+    --drake-gold: 45 89% 49%; /* #e4af12 */
+    --drake-orange: 20 99% 55%; /* #fe6f1d */
+    --drake-blue: 195 98% 55%; /* #14c5fd */
+    --drake-dark-blue: 235 92% 52%; /* #1338f3 */
+    --drake-red: 0 92% 52%; /* #f31313 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold;
+  }
+  
+  /* Smooth scrolling for navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+  /* Drake-style button */
+  .btn-drake {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium transition-all duration-300;
+    @apply bg-primary text-black hover:bg-primary/90;
+    @apply rounded-md border-2 border-transparent hover:border-primary hover:bg-transparent hover:text-primary;
+  }
+  
+  /* Drake-style card */
+  .card-drake {
+    @apply bg-card rounded-lg border shadow-sm transition-all duration-300;
+    @apply hover:shadow-lg hover:scale-[1.02];
+  }
+  
+  /* Drake-style gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent;
+  }
+  
+  /* Drake-style section padding */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  /* Drake-style container */
+  .container-drake {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Text clamping utilities for testimonials */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  
+  .line-clamp-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+  
+  /* Enhanced text decorations for dark theme */
+  .text-glow {
+    text-shadow: 0 0 10px rgba(40, 233, 140, 0.3);
+  }
+  
+  .text-highlight {
+    background: linear-gradient(135deg, rgba(40, 233, 140, 0.1) 0%, rgba(40, 233, 140, 0.05) 100%);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, rgba(40, 233, 140, 0.1) 0%, rgba(40, 233, 140, 0.05) 100%);
+    border-radius: 0.5rem;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, #28e98c, rgba(40, 233, 140, 0.3));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+  }
+}
