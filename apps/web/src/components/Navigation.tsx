@@ -37,10 +37,14 @@ const Navigation = () => {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold text-lg">AP</span>
+            <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center p-2">
+              <img 
+                src="/images/ALOGO.svg" 
+                alt="Alfred Paul Logo" 
+                className="w-full h-full object-contain filter brightness-0"
+              />
             </div>
             <div className="hidden md:block">
               <div className="text-lg font-bold">Alfred Paul</div>
