@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Code2, Lightbulb, Users, Rocket, Award, Target } from 'lucide-react'
+import { Code2, Lightbulb, Users, Rocket, Award, Target, Download } from 'lucide-react'
 
 const About = () => {
   // Animation variants
@@ -130,6 +130,22 @@ const About = () => {
                   <div className="text-3xl font-bold text-primary mb-2">8+</div>
                   <div className="text-sm text-muted-foreground uppercase tracking-wide">Team Members Led</div>
                 </div>
+              </div>
+
+              {/* Download Resume Button */}
+              <div className="pt-6">
+                <motion.a
+                  href="/assets/Alfred-Paul-Resume.pdf"
+                  download="Alfred-Paul-Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-black font-medium rounded-lg hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Download className="w-4 h-4" />
+                  Download Resume
+                </motion.a>
               </div>
             </div>
           </motion.div>
