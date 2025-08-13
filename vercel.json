@@ -1,9 +1,7 @@
 {
-  "version": 2,
-  "buildCommand": "npx turbo run build --filter=web",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "dist",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "framework": null,
+  "installCommand": "pnpm install",
   "routes": [
     {
       "handle": "filesystem"
