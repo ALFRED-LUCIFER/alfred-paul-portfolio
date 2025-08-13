@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, Home, User, FileText, Briefcase, Code, FolderOpen, MessageSquare, Phone } from 'lucide-react'
+import { Menu, X, Home, User, FileText, Briefcase, Code, FolderOpen, MessageSquare, Phone, Linkedin } from 'lucide-react'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,11 +39,11 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-3"
           >
-            <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center p-2">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-lg flex items-center justify-center p-2">
               <img 
                 src="/images/ALOGO.svg" 
                 alt="Alfred Paul Logo" 
-                className="w-full h-full object-contain filter brightness-0"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="hidden md:block">
@@ -67,6 +67,20 @@ const Navigation = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
               </motion.button>
             ))}
+            
+            {/* LinkedIn Link */}
+            <motion.a
+              href="https://www.linkedin.com/in/alfred-paul-56438454"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navItems.length * 0.05 }}
+              className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary/80 transition-colors duration-200"
+              title="LinkedIn Profile"
+            >
+              <Linkedin size={18} />
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -111,6 +125,20 @@ const Navigation = () => {
                 </motion.button>
               )
             })}
+            
+            {/* LinkedIn Link in Mobile Menu */}
+            <motion.a
+              href="https://www.linkedin.com/in/alfred-paul-56438454"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: navItems.length * 0.05 }}
+              className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors text-left"
+            >
+              <Linkedin size={18} className="text-primary" />
+              <span className="font-medium">LinkedIn</span>
+            </motion.a>
           </div>
         </div>
       </motion.div>
