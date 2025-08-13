@@ -31,7 +31,7 @@ const Portfolio = () => {
       id: 1,
       title: "Enterprise RAG Chatbot with Quin",
       description: "Built an AI-powered chatbot using Retrieval-Augmented Generation pipelines for internal documentation queries with semantic search capabilities.",
-      image: "/assets/projects/rag-chatbot.jpg",
+      image: null, // Using placeholder
       category: "AI Development",
       technologies: ["Python", "LangChain", "RAG", "Quin", "OpenAI"],
       liveUrl: null, // Internal tool
@@ -48,7 +48,7 @@ const Portfolio = () => {
       id: 2,
       title: "Industrial Automation Platform", 
       description: "Modernized legacy monolithic industrial automation system into microservices architecture with React frontend and .NET Core APIs.",
-      image: "/assets/projects/automation-platform.jpg",
+      image: null, // Using placeholder
       category: "Full-Stack Development",
       technologies: [".NET Core", "React", "Azure", "SQL Server", "Docker"],
       liveUrl: null, // Enterprise
@@ -65,7 +65,7 @@ const Portfolio = () => {
       id: 3,
       title: "AI-Assisted Development Toolkit",
       description: "Created internal tools integrating GitHub Copilot and Cursor.ai workflows to accelerate development with automated code generation and testing.",
-      image: "/assets/projects/ai-toolkit.jpg", 
+      image: null, // Using placeholder
       category: "Developer Tools",
       technologies: ["GitHub Copilot", "Cursor.ai", "VS Code", "Python", "TypeScript"],
       liveUrl: null,
@@ -82,7 +82,7 @@ const Portfolio = () => {
       id: 4,
       title: "Cloud Migration & DevOps Pipeline",
       description: "Led migration of enterprise applications to Azure with comprehensive CI/CD pipelines, reducing deployment time and improving system reliability.", 
-      image: "/assets/projects/devops-pipeline.jpg",
+      image: null, // Using placeholder
       category: "Cloud & DevOps",
       technologies: ["Azure", "GitHub Actions", "Docker", "Kubernetes", "Terraform"],
       liveUrl: null,
@@ -99,7 +99,7 @@ const Portfolio = () => {
       id: 5,
       title: "Team Collaboration Platform",
       description: "Built internal platform for distributed team collaboration with real-time communication, project tracking, and code review workflows.",
-      image: "/assets/projects/collaboration-platform.jpg",
+      image: null, // Using placeholder
       category: "Team Management",
       technologies: ["React", "Node.js", "Socket.io", "PostgreSQL", "Docker"],
       liveUrl: null,
