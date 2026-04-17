@@ -138,8 +138,8 @@ const About = () => {
               {/* Download Resume Button */}
               <div className="pt-6">
                 <motion.a
-                  href="/assets/Alfred-Paul-Resume.pdf"
-                  download="Alfred-Paul-Resume.pdf"
+                  href="/Alfred_Paul_Engineering_Manager.pdf"
+                  download="Alfred_Paul_Engineering_Manager.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-primary to-primary/80 text-black font-medium rounded-lg hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
@@ -198,7 +198,7 @@ const About = () => {
               >
                 <div className="flex items-center gap-2">
                   <Award className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-primary">11+ Years</span>
+                  <span className="text-sm font-medium text-primary">12+ Years</span>
                 </div>
               </motion.div>
 

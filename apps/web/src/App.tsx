@@ -9,6 +9,8 @@ import { Skills } from './features/skills'
 import { Portfolio } from './features/portfolio'
 import { Testimonials } from './features/testimonials'
 import { Contact } from './features/contact'
+import { Insights } from './features/insights'
+import { LeadershipPhilosophy } from './features/leadership'
 import { ScrollProgressBar } from './shared/ui/ScrollProgressBar'
 import { BackToTop } from './shared/ui/BackToTop'
 import { LoadingScreen } from './shared/ui/LoadingScreen'
@@ -57,6 +59,14 @@ function App() {
 
           <section id="portfolio" className="section-padding bg-muted/20">
             <Portfolio />
+          </section>
+
+          <section id="leadership" className="section-padding">
+            <LeadershipPhilosophy />
+          </section>
+
+          <section id="insights" className="section-padding bg-muted/20">
+            <Insights />
           </section>
 
           <section id="testimonials" className="section-padding">

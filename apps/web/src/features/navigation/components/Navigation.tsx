@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import {
   Menu, X, Home, User, FileText, Briefcase,
-  Code, FolderOpen, MessageSquare, Phone, Linkedin, Command,
+  Code, FolderOpen, MessageSquare, Phone, Linkedin, Command, BookOpen, Award,
 } from 'lucide-react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { useCommandPalette } from '../../../shared/hooks/useCommandPalette'
@@ -16,6 +16,8 @@ const navItems = [
   { name: 'Services', href: '#services', icon: Briefcase },
   { name: 'Skills', href: '#skills', icon: Code },
   { name: 'Portfolio', href: '#portfolio', icon: FolderOpen },
+  { name: 'Leadership', href: '#leadership', icon: Award },
+  { name: 'Insights', href: '#insights', icon: BookOpen },
   { name: 'Testimonials', href: '#testimonials', icon: MessageSquare },
   { name: 'Contact', href: '#contact', icon: Phone },
 ]

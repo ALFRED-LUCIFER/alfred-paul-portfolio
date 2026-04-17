@@ -90,7 +90,7 @@ const Hero = () => {
             >
               <motion.a
                 ref={magnetic.ref as React.RefObject<HTMLAnchorElement>}
-                href="/Alfred_Paul_Resume.pdf"
+                href="/Alfred_Paul_Engineering_Manager.pdf"
                 download
                 style={{ x: magnetic.x, y: magnetic.y }}
                 onMouseMove={magnetic.onMouseMove as unknown as React.MouseEventHandler<HTMLAnchorElement>}

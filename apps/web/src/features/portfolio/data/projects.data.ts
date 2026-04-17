@@ -4,6 +4,7 @@ export type ProjectCategory =
   | 'Developer Tools'
   | 'Cloud & DevOps'
   | 'Team Management'
+  | 'Enterprise AI Platform'
 
 export interface CaseStudy {
   problem: string
@@ -178,6 +179,68 @@ export const PROJECTS: Project[] = [
         { label: 'Timezone Coverage', value: '3 zones' },
         { label: 'Onboarding Time', value: '-2 days' },
         { label: 'Missed Updates', value: '~0' },
+      ],
+    },
+  },
+  {
+    id: 6,
+    title: 'Enterprise MCP: On-Prem Jira & Confluence AI',
+    description:
+      'Built a production Model Context Protocol (MCP) server connecting on-premise Jira and Confluence to Copilot Studio — enabling AI-powered IT service ticketing and knowledge-base Q&A with zero cloud data exposure.',
+    category: 'Enterprise AI Platform',
+    technologies: ['MCP (Anthropic)', 'Copilot Studio', 'Jira REST API', 'Confluence REST API', 'Python', 'On-Prem'],
+    features: [
+      'AI chatbot creates IT tickets with file attachments',
+      'Natural language search across Confluence knowledge base',
+      '100% on-prem — zero data leaves the organisation',
+      'Copilot Studio integration for enterprise-grade UX',
+    ],
+    liveUrl: null,
+    githubUrl: null,
+    featured: true,
+    caseStudy: {
+      problem:
+        'The IT helpdesk team was manually triaging service requests submitted via email and Teams chat. Engineers wasted 30–40 minutes per ticket finding the right Confluence docs to resolve issues. All data had to remain on-premises due to compliance requirements — no SaaS AI tools permitted.',
+      solution:
+        'Designed a custom MCP (Model Context Protocol) server that connects to on-premise Jira and Confluence REST APIs. Integrated with Microsoft Copilot Studio as the conversational UX layer. Users describe their issue in natural language; the AI creates a structured Jira ticket with priority, component, and attachment — or answers directly from indexed Confluence pages. All compute runs inside the corporate network.',
+      impact:
+        'IT ticket creation time dropped from 15 minutes to under 2 minutes. L1 support queries resolved at the chat layer without ticket creation increased by 60%. Full compliance maintained — zero data egress.',
+      metrics: [
+        { label: 'Ticket Creation Time', value: '-87%' },
+        { label: 'L1 Deflection Rate', value: '60%' },
+        { label: 'Data Compliance', value: '100% On-Prem' },
+        { label: 'Confluence Pages Indexed', value: '500+' },
+      ],
+    },
+  },
+  {
+    id: 7,
+    title: 'AI Code Orchestration Agent (Jira → Production)',
+    description:
+      'Built an agentic orchestration platform that reads Jira requirements, plans full-stack implementation, and executes parallel sub-agents for code generation, unit testing, Cypress E2E, and code review — with human-in-the-loop approval and a satisfaction scoring gate.',
+    category: 'Enterprise AI Platform',
+    technologies: ['Claude Agent SDK', 'MCP', 'Jira API', 'TypeScript', 'Cypress', 'GitHub Actions'],
+    features: [
+      'Jira-to-code: reads tickets, drafts orchestration plan',
+      'Human-in-the-loop approval before any execution',
+      'Parallel agents: codegen + unit tests + Cypress + review',
+      'Satisfaction scoring system enforces company standards',
+    ],
+    liveUrl: null,
+    githubUrl: null,
+    featured: true,
+    caseStudy: {
+      problem:
+        'Developers spent 40–60% of feature work on repetitive scaffolding: reading Jira tickets, translating requirements to tasks, writing boilerplate code, creating unit tests, and setting up Cypress test suites — all before writing a single line of business logic. Quality gates were inconsistent and dependent on individual code reviewers.',
+      solution:
+        'Built an agentic pipeline using Claude Agent SDK and MCP. The orchestrator reads a Jira ticket, analyzes requirements, and produces a structured implementation plan (architecture → component breakdown → test strategy → Cypress scenarios). After human approval, it dispatches sub-agents in parallel: a code generation agent (TypeScript/React), a unit test agent (Jest), a Cypress E2E agent, and a code review agent. The review agent applies company-standard guardrails and scores each output on a 100-point rubric. Agents iterate until the satisfaction threshold is met.',
+      impact:
+        'End-to-end delivery from Jira ticket to reviewed, tested code reduced from 3 days to 4 hours for standard features. Guardrail enforcement eliminated 90% of standard code review comments. Developer focus shifted from scaffolding to architecture and business logic.',
+      metrics: [
+        { label: 'Feature Delivery Time', value: '-87%' },
+        { label: 'Code Review Comments', value: '-90%' },
+        { label: 'Agent Sub-Tasks Parallel', value: '4 agents' },
+        { label: 'Standards Compliance', value: '100%' },
       ],
     },
   },

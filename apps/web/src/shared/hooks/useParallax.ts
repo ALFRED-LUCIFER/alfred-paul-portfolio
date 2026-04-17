@@ -1,4 +1,5 @@
 import { useEffect, type RefObject } from 'react'
+import type { gsap as GsapType } from 'gsap'
 import { useReducedMotion } from './useReducedMotion'
 
 export function useParallax(
@@ -11,8 +12,7 @@ export function useParallax(
   useEffect(() => {
     if (prefersReduced || !triggerRef.current || !targetRef.current) return
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let tween: any
+    let tween: ReturnType<typeof GsapType.to> | undefined
 
     const init = async () => {
       const { gsap } = await import('gsap')
