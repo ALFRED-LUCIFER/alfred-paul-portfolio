@@ -6,11 +6,18 @@ export type ProjectCategory =
   | 'Team Management'
   | 'Enterprise AI Platform'
 
+export interface AgentArchitecture {
+  overviewDiagram: string
+  detailedDiagram: string
+  code: string
+}
+
 export interface CaseStudy {
   problem: string
   solution: string
   impact: string
   metrics: Array<{ label: string; value: string }>
+  architecture?: AgentArchitecture
 }
 
 export interface Project {
@@ -242,6 +249,137 @@ export const PROJECTS: Project[] = [
         { label: 'Agent Sub-Tasks Parallel', value: '4 agents' },
         { label: 'Standards Compliance', value: '100%' },
       ],
+      architecture: {
+        overviewDiagram: `flowchart TD
+    U["Developer / Lead / PO"] --> DE["delivery-engine\\nSingle Entry Agent"]
+    DE --> P1["Phase 1: Plan"]
+    P1 --> P2["Codebase Research"]
+    P1 --> P3["Jira Analysis"]
+    P1 --> P4["Confluence Context"]
+    P2 --> AP{"Approval Gate"}
+    P3 --> AP
+    P4 --> AP
+    AP -->|Approved| EX["Phase 2: Execute"]
+    AP -->|Refine| P1
+    EX --> RT{"Workspace Routing"}
+    RT -->|Backend Only| BE["Backend Orchestration"]
+    RT -->|Frontend Only| FE["Frontend Orchestration"]
+    RT -->|Full Stack| FS["Full-Stack Orchestration"]
+    BE --> VR["Verification"]
+    FE --> VR
+    FS --> VR
+    VR --> FR["Final Delivery Report"]`,
+        detailedDiagram: `flowchart TB
+    U["User / Developer"] --> DE["delivery-engine"]
+    DE --> PLAN["Plan"]
+    DE --> APPROVE["Approval"]
+    DE --> EXEC["Execute"]
+    DE --> VERIFY["Verify"]
+    DE --> REPORT["Report"]
+    PLAN --> EXP["Explore"]
+    PLAN --> JIRA["jira-task-planner"]
+    PLAN --> CONF["jira-confluence-planner"]
+    APPROVE --> ROUTE{"Workspace Type"}
+    ROUTE --> BO["Backend Only"]
+    ROUTE --> FO["Frontend Only"]
+    ROUTE --> FS["Full Stack"]
+    subgraph BACKEND ["Backend Flow"]
+        BO --> B1["backend-code-builder"]
+        B1 --> B2["db-migration-generator"]
+        B2 --> B3["test-writer"]
+        B3 --> B4["code-reviewer"]
+    end
+    subgraph FRONTEND ["Frontend Flow"]
+        FO --> F1["frontend-builder"]
+        F1 --> F2["domain/controller validation"]
+        F2 --> F3["test-generator"]
+        F2 --> F4["cypress-generator"]
+        F3 --> F5["code-reviewer"]
+        F4 --> F5
+    end
+    subgraph FULLSTACK ["Full Stack Flow"]
+        FS --> S1["backend-code-builder"]
+        S1 --> S2["db-migration-generator"]
+        S2 --> S3["frontend-builder"]
+        S3 --> S4["domain/controller validation"]
+        S4 --> S5["test-writer"]
+        S4 --> S6["test-generator"]
+        S4 --> S7["cypress-generator"]
+        S5 --> S8["code-reviewer"]
+        S6 --> S8
+        S7 --> S8
+        S8 --> S9["cross-contract verification"]
+    end
+    B4 --> VERIFY
+    F5 --> VERIFY
+    S9 --> VERIFY
+    VERIFY --> REPORT`,
+        code: `// delivery-engine.ts — Single entry orchestrator
+export async function deliveryEngine(ticket: JiraTicket): Promise<DeliveryReport> {
+  // Phase 1: Plan — parallel research
+  const [codebaseCtx, jiraPlan, confluenceCtx] = await Promise.all([
+    exploreAgent.analyze(ticket),
+    jiraTaskPlanner.plan(ticket),
+    jiraConfluencePlanner.fetch(ticket),
+  ])
+
+  // Approval gate — human-in-the-loop
+  const plan = buildPlan(codebaseCtx, jiraPlan, confluenceCtx)
+  const approved = await humanApprovalGate(plan)
+  if (!approved) return deliveryEngine(ticket) // refine loop
+
+  // Phase 2: Execute — route by workspace type
+  const result = await route(plan)
+
+  // Phase 3: Verify & Report
+  const verified = await verifyAgent.run(result)
+  return generateDeliveryReport(verified)
+}
+
+async function route(plan: Plan): Promise<AgentOutput> {
+  switch (plan.workspaceType) {
+    case 'backend':  return backendFlow(plan)
+    case 'frontend': return frontendFlow(plan)
+    case 'fullstack': return fullStackFlow(plan)
+  }
+}
+
+// --- Backend Flow (sequential) ---
+async function backendFlow(plan: Plan) {
+  const code  = await backendCodeBuilder.run(plan)
+  const migrated = plan.needsMigration
+    ? await dbMigrationGenerator.run(code) : code
+  const tested = await testWriter.run(migrated)
+  return codeReviewer.run(tested)
+}
+
+// --- Frontend Flow (sequential then parallel) ---
+async function frontendFlow(plan: Plan) {
+  const code = await frontendBuilder.run(plan)
+  await domainControllerValidator.validate(code)
+  const [unitTests, e2eTests] = await Promise.all([
+    testGenerator.run(code),
+    cypressGenerator.run(code),
+  ])
+  return codeReviewer.run({ unitTests, e2eTests })
+}
+
+// --- Full-Stack Flow (sequential then parallel) ---
+async function fullStackFlow(plan: Plan) {
+  const be = await backendCodeBuilder.run(plan)
+  const migrated = plan.needsMigration
+    ? await dbMigrationGenerator.run(be) : be
+  const fe = await frontendBuilder.run(migrated)
+  await domainControllerValidator.validate(fe)
+  const [beTests, feTests, e2e] = await Promise.all([
+    testWriter.run(fe),
+    testGenerator.run(fe),
+    cypressGenerator.run(fe),
+  ])
+  const reviewed = await codeReviewer.run({ beTests, feTests, e2e })
+  return crossContractVerifier.run(reviewed)
+}`,
+      },
     },
   },
 ]

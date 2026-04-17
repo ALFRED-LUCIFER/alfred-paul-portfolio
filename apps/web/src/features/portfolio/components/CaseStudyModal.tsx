@@ -1,6 +1,13 @@
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X, TrendingUp, Lightbulb, Target, BarChart3 } from 'lucide-react'
+import { X, TrendingUp, Lightbulb, Target, BarChart3, Network, Code2 } from 'lucide-react'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import ts from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript'
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import type { Project } from '../data/projects.data'
+import { ArchitectureDiagram } from './ArchitectureDiagram'
+
+SyntaxHighlighter.registerLanguage('typescript', ts)
 
 interface Props {
   project: Project | null
@@ -9,6 +16,8 @@ interface Props {
 }
 
 export function CaseStudyModal({ project, onClose, accentColor }: Props) {
+  const [archTab, setArchTab] = useState<'overview' | 'detailed' | 'code'>('overview')
+
   return (
     <AnimatePresence>
       {project && (
@@ -118,6 +127,76 @@ export function CaseStudyModal({ project, onClose, accentColor }: Props) {
                   {project.caseStudy.impact}
                 </p>
               </div>
+
+              {/* Architecture */}
+              {project.caseStudy.architecture && (
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Network size={16} style={{ color: accentColor }} />
+                    <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Agent Architecture</span>
+                  </div>
+
+                  {/* Tab switcher */}
+                  <div className="flex gap-1 mb-4 rounded-lg p-1" style={{ background: `${accentColor}10`, border: `1px solid ${accentColor}20` }}>
+                    {(['overview', 'detailed', 'code'] as const).map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setArchTab(tab)}
+                        className="flex-1 py-1.5 rounded-md text-xs font-mono transition-all"
+                        style={
+                          archTab === tab
+                            ? { background: accentColor, color: '#0d1117' }
+                            : { color: accentColor + '99' }
+                        }
+                      >
+                        {tab === 'code' ? <span className="flex items-center justify-center gap-1"><Code2 size={11} />{tab}</span> : tab}
+                      </button>
+                    ))}
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={archTab}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {archTab === 'overview' && (
+                        <ArchitectureDiagram
+                          diagram={project.caseStudy.architecture.overviewDiagram}
+                          accentColor={accentColor}
+                        />
+                      )}
+                      {archTab === 'detailed' && (
+                        <ArchitectureDiagram
+                          diagram={project.caseStudy.architecture.detailedDiagram}
+                          accentColor={accentColor}
+                        />
+                      )}
+                      {archTab === 'code' && (
+                        <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${accentColor}30` }}>
+                          <div
+                            className="px-4 py-2 flex items-center gap-2 border-b text-xs font-mono"
+                            style={{ background: `${accentColor}15`, borderColor: `${accentColor}30`, color: accentColor }}
+                          >
+                            <Code2 size={13} /> delivery-engine.ts
+                          </div>
+                          <SyntaxHighlighter
+                            language="typescript"
+                            style={atomOneDark}
+                            customStyle={{ margin: 0, borderRadius: 0, fontSize: '11px', padding: '1rem', background: '#1e2330' }}
+                            showLineNumbers
+                            lineNumberStyle={{ color: '#4a5568', fontSize: '10px' }}
+                          >
+                            {project.caseStudy.architecture.code}
+                          </SyntaxHighlighter>
+                        </div>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              )}
 
               {/* Features */}
               <div>
