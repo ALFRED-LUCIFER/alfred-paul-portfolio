@@ -1,66 +1,76 @@
 import './App.css'
 
-// Components
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import About from './components/About'
-import Resume from './components/Resume'
-import Services from './components/Services'
-import Skills from './components/Skills'
-import Portfolio from './components/Portfolio'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { Navigation, Footer } from './features/navigation'
+import { Hero } from './features/hero'
+import { About } from './features/about'
+import { Resume } from './features/resume'
+import { Services } from './features/services'
+import { Skills } from './features/skills'
+import { Portfolio } from './features/portfolio'
+import { Testimonials } from './features/testimonials'
+import { Contact } from './features/contact'
+import { ScrollProgressBar } from './shared/ui/ScrollProgressBar'
+import { BackToTop } from './shared/ui/BackToTop'
+import { LoadingScreen } from './shared/ui/LoadingScreen'
+import { CustomCursor } from './shared/ui/CustomCursor'
+import { CommandPalette } from './shared/ui/CommandPalette'
+import { DeveloperMode } from './shared/ui/DeveloperMode'
+import { useCommandPalette } from './shared/hooks/useCommandPalette'
+import { useKonamiCode } from './shared/hooks/useKonamiCode'
 
 function App() {
+  const { isOpen, close } = useCommandPalette()
+  const { activated: devMode, dismiss: closeDev } = useKonamiCode()
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      
-      <main>
-        {/* Hero Section */}
-        <section id="home" className="section-padding">
-          <Hero />
-        </section>
+    <>
+      <CustomCursor />
+      <LoadingScreen />
+      <ScrollProgressBar />
+      <BackToTop />
+      <CommandPalette isOpen={isOpen} onClose={close} />
+      <DeveloperMode isOpen={devMode} onClose={closeDev} />
 
-        {/* About Section */}
-        <section id="about" className="section-padding bg-muted/20">
-          <About />
-        </section>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
 
-        {/* Resume Section */}
-        <section id="resume" className="section-padding">
-          <Resume />
-        </section>
+        <main>
+          <section id="home" className="section-padding">
+            <Hero />
+          </section>
 
-        {/* Services Section */}
-        <section id="services" className="section-padding bg-muted/20">
-          <Services />
-        </section>
+          <section id="about" className="section-padding bg-muted/20">
+            <About />
+          </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="section-padding">
-          <Skills />
-        </section>
+          <section id="resume" className="section-padding">
+            <Resume />
+          </section>
 
-        {/* Portfolio Section */}
-        <section id="portfolio" className="section-padding bg-muted/20">
-          <Portfolio />
-        </section>
+          <section id="services" className="section-padding bg-muted/20">
+            <Services />
+          </section>
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="section-padding">
-          <Testimonials />
-        </section>
+          <section id="skills" className="section-padding">
+            <Skills />
+          </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="section-padding bg-muted/20">
-          <Contact />
-        </section>
-      </main>
+          <section id="portfolio" className="section-padding bg-muted/20">
+            <Portfolio />
+          </section>
 
-      <Footer />
-    </div>
+          <section id="testimonials" className="section-padding">
+            <Testimonials />
+          </section>
+
+          <section id="contact" className="section-padding bg-muted/20">
+            <Contact />
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   )
 }
 
