@@ -153,7 +153,7 @@ const TIER_STYLE: Record<Tier, string> = {
 const ACHIEVEMENTS = [
   { icon: Zap, value: '+40%', label: 'Dev Productivity', sub: 'via AI tooling adoption' },
   { icon: TrendingUp, value: '-60%', label: 'Release Cycles', sub: 'through DevOps pipelines' },
-  { icon: Award, value: '5', label: 'Certifications', sub: 'Scrum · Microsoft · Google · Python' },
+  { icon: Award, value: '7', label: 'Certifications', sub: 'Scrum · Microsoft · Google · Azure · Python' },
 ]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────

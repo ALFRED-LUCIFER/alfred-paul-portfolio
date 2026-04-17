@@ -73,7 +73,7 @@ const SERVICES = [
 const STATS = [
   { icon: Zap, value: '12+', label: 'Years Enterprise Experience' },
   { icon: TrendingUp, value: '99.7%', label: 'System Uptime' },
-  { icon: Shield, value: '5', label: 'Industry Certifications' },
+  { icon: Shield, value: '7', label: 'Industry Certifications' },
   { icon: Layers, value: '50+', label: 'Projects Delivered' },
 ]
 
