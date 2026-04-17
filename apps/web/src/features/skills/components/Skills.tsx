@@ -1,4 +1,5 @@
-import { motion } from 'motion/react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { Brain, Code, Database, Cloud, Users, Cog, Zap, TrendingUp, Award } from 'lucide-react'
 import { ClipReveal } from '../../../shared/ui/ClipReveal'
 
@@ -22,121 +23,138 @@ const MARQUEE_ROW_2 = [
   'MongoDB', 'GraphQL', 'Azure DevOps', 'Jira', 'Figma', 'Linux',
 ]
 
-// accent color, card glow color (rgb for shadow), gradient stops
-const CATEGORIES = [
+type Tier = 'Expert' | 'Advanced' | 'Certified' | 'Proficient'
+
+interface Skill {
+  name: string
+  tier: Tier
+  level: number
+}
+
+interface Category {
+  id: string
+  label: string
+  icon: typeof Brain
+  accent: string
+  rgb: string
+  highlight: string
+  skills: Skill[]
+}
+
+const CATEGORIES: Category[] = [
   {
     id: 'ai',
-    label: 'AI & ML Engineering',
+    label: 'AI & ML',
     icon: Brain,
     accent: '#28e98c',
-    shadow: '40, 233, 140',
-    span: 'md:col-span-2 xl:col-span-2',
-    tools: [
-      { name: 'Qwen + RAG', tag: 'Expert' },
-      { name: 'LangChain', tag: 'Expert' },
-      { name: 'GitHub Copilot', tag: 'Expert' },
-      { name: 'Cursor.ai', tag: 'Expert' },
-      { name: 'OpenAI APIs', tag: 'Advanced' },
-      { name: 'Prompt Engineering', tag: 'Expert' },
-      { name: 'Vector Databases', tag: 'Advanced' },
-      { name: 'Python ML Libs', tag: 'Advanced' },
+    rgb: '40,233,140',
+    highlight: '40% dev speed gain · 98% search reduction',
+    skills: [
+      { name: 'Qwen + RAG', tier: 'Expert', level: 95 },
+      { name: 'LangChain', tier: 'Expert', level: 92 },
+      { name: 'GitHub Copilot', tier: 'Expert', level: 98 },
+      { name: 'Cursor.ai', tier: 'Expert', level: 95 },
+      { name: 'OpenAI APIs', tier: 'Advanced', level: 88 },
+      { name: 'Prompt Engineering', tier: 'Expert', level: 93 },
+      { name: 'Vector Databases', tier: 'Advanced', level: 85 },
+      { name: 'Python ML Libs', tier: 'Advanced', level: 82 },
     ],
-    highlight: '40% faster dev · 98% search reduction',
   },
   {
     id: 'backend',
-    label: 'Backend & APIs',
+    label: 'Backend',
     icon: Database,
     accent: '#14c5fd',
-    shadow: '20, 197, 253',
-    span: 'md:col-span-1 xl:col-span-1',
-    tools: [
-      { name: '.NET Core / C#', tag: 'Expert' },
-      { name: 'Python', tag: 'Expert' },
-      { name: 'NestJS', tag: 'Advanced' },
-      { name: 'REST APIs', tag: 'Expert' },
-      { name: 'SQL Server', tag: 'Expert' },
-      { name: 'PostgreSQL', tag: 'Advanced' },
+    rgb: '20,197,253',
+    highlight: '12 yrs enterprise backend mastery',
+    skills: [
+      { name: '.NET Core / C#', tier: 'Expert', level: 98 },
+      { name: 'Python', tier: 'Expert', level: 92 },
+      { name: 'NestJS', tier: 'Advanced', level: 82 },
+      { name: 'REST APIs', tier: 'Expert', level: 97 },
+      { name: 'SQL Server', tier: 'Expert', level: 95 },
+      { name: 'PostgreSQL', tier: 'Advanced', level: 85 },
+      { name: 'MongoDB', tier: 'Advanced', level: 78 },
+      { name: 'Redis', tier: 'Proficient', level: 72 },
     ],
-    highlight: '12 yrs backend mastery',
   },
   {
     id: 'frontend',
     label: 'Frontend',
     icon: Code,
     accent: '#fe6f1d',
-    shadow: '254, 111, 29',
-    span: 'md:col-span-1 xl:col-span-1',
-    tools: [
-      { name: 'React 19', tag: 'Expert' },
-      { name: 'TypeScript', tag: 'Expert' },
-      { name: 'Next.js', tag: 'Advanced' },
-      { name: 'Tailwind CSS', tag: 'Expert' },
-      { name: 'Motion', tag: 'Advanced' },
+    rgb: '254,111,29',
+    highlight: 'Component-driven, performance-first',
+    skills: [
+      { name: 'React 19', tier: 'Expert', level: 95 },
+      { name: 'TypeScript', tier: 'Expert', level: 94 },
+      { name: 'Next.js', tier: 'Advanced', level: 84 },
+      { name: 'Tailwind CSS', tier: 'Expert', level: 96 },
+      { name: 'Framer Motion', tier: 'Advanced', level: 82 },
+      { name: 'GraphQL', tier: 'Proficient', level: 70 },
     ],
-    highlight: 'Component-driven architecture',
   },
   {
     id: 'cloud',
-    label: 'Cloud & DevOps',
+    label: 'Cloud',
     icon: Cloud,
     accent: '#e4af12',
-    shadow: '228, 175, 18',
-    span: 'md:col-span-1 xl:col-span-1',
-    tools: [
-      { name: 'Microsoft Azure', tag: 'Expert' },
-      { name: 'Docker', tag: 'Expert' },
-      { name: 'Kubernetes', tag: 'Advanced' },
-      { name: 'GitHub Actions', tag: 'Expert' },
-      { name: 'Terraform', tag: 'Advanced' },
+    rgb: '228,175,18',
+    highlight: '60% faster release cycles',
+    skills: [
+      { name: 'Microsoft Azure', tier: 'Expert', level: 94 },
+      { name: 'Docker', tier: 'Expert', level: 96 },
+      { name: 'Kubernetes', tier: 'Advanced', level: 83 },
+      { name: 'GitHub Actions', tier: 'Expert', level: 92 },
+      { name: 'Terraform', tier: 'Advanced', level: 78 },
+      { name: 'AWS', tier: 'Proficient', level: 68 },
     ],
-    highlight: '60% faster release cycle',
   },
   {
     id: 'leadership',
     label: 'Leadership',
     icon: Users,
     accent: '#a855f7',
-    shadow: '168, 85, 247',
-    span: 'md:col-span-1 xl:col-span-1',
-    tools: [
-      { name: 'Team Leadership', tag: 'Expert' },
-      { name: 'Scrum Master', tag: 'Certified' },
-      { name: 'Agile / Kanban', tag: 'Expert' },
-      { name: 'Code Review', tag: 'Expert' },
-      { name: 'Mentoring', tag: 'Expert' },
+    rgb: '168,85,247',
+    highlight: 'Led 15–20 engineers globally',
+    skills: [
+      { name: 'Team Leadership', tier: 'Expert', level: 98 },
+      { name: 'Scrum Master', tier: 'Certified', level: 95 },
+      { name: 'Agile / Kanban', tier: 'Expert', level: 96 },
+      { name: 'Code Review', tier: 'Expert', level: 97 },
+      { name: 'Mentoring', tier: 'Expert', level: 95 },
+      { name: 'Stakeholder Mgmt', tier: 'Expert', level: 90 },
     ],
-    highlight: 'Led 15–20 eng teams globally',
   },
   {
     id: 'arch',
-    label: 'System Architecture',
+    label: 'Architecture',
     icon: Cog,
     accent: '#f31313',
-    shadow: '243, 49, 19',
-    span: 'md:col-span-2 xl:col-span-1',
-    tools: [
-      { name: 'Microservices', tag: 'Expert' },
-      { name: 'DDD Patterns', tag: 'Advanced' },
-      { name: 'System Integration', tag: 'Expert' },
-      { name: 'Performance Tuning', tag: 'Expert' },
+    rgb: '243,49,19',
+    highlight: '99.7% uptime · zero-downtime migrations',
+    skills: [
+      { name: 'Microservices', tier: 'Expert', level: 95 },
+      { name: 'DDD Patterns', tier: 'Advanced', level: 84 },
+      { name: 'System Integration', tier: 'Expert', level: 96 },
+      { name: 'Performance Tuning', tier: 'Expert', level: 93 },
+      { name: 'Security Patterns', tier: 'Advanced', level: 82 },
     ],
-    highlight: '99.7% uptime achieved',
   },
 ]
+
+const TIER_STYLE: Record<Tier, string> = {
+  Expert: 'bg-primary/15 text-primary border-primary/30',
+  Advanced: 'bg-blue-500/10 text-blue-400 border-blue-500/25',
+  Certified: 'bg-purple-500/10 text-purple-400 border-purple-500/25',
+  Proficient: 'bg-orange-500/10 text-orange-400 border-orange-500/25',
+}
 
 const ACHIEVEMENTS = [
   { icon: Zap, value: '+40%', label: 'Dev Productivity', sub: 'via AI tooling adoption' },
   { icon: TrendingUp, value: '-60%', label: 'Release Cycles', sub: 'through DevOps pipelines' },
   { icon: Award, value: '5', label: 'Certifications', sub: 'Scrum · Microsoft · Google · Python' },
 ]
-
-const TAG_COLORS: Record<string, string> = {
-  Expert: 'bg-primary/15 text-primary border-primary/30',
-  Advanced: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  Certified: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  Proficient: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-}
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -158,66 +176,28 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
   )
 }
 
-function BentoCard({ cat, index }: { cat: typeof CATEGORIES[0]; index: number }) {
-  const Icon = cat.icon
+function SkillBar({ skill, accent, rgb, index }: { skill: Skill; accent: string; rgb: string; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      className={`group relative rounded-2xl border bg-card/50 backdrop-blur-sm p-6 overflow-hidden transition-all duration-500 ${cat.span}`}
-      style={{
-        borderColor: `rgba(${cat.shadow}, 0.15)`,
-        boxShadow: `0 0 0 0 rgba(${cat.shadow}, 0)`,
-      }}
-      whileHover={{
-        boxShadow: `0 0 32px rgba(${cat.shadow}, 0.18), 0 0 0 1px rgba(${cat.shadow}, 0.3)`,
-        borderColor: `rgba(${cat.shadow}, 0.4)`,
-      } as never}
+      initial={{ opacity: 0, x: -16 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.04 }}
+      className="group"
     >
-      {/* Top accent strip */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
-        style={{ background: `linear-gradient(90deg, ${cat.accent}, transparent)` }}
-      />
-
-      {/* Background glow blob */}
-      <div
-        className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-3xl"
-        style={{ background: cat.accent }}
-      />
-
-      {/* Header */}
-      <div className="flex items-start justify-between mb-5 relative z-10">
-        <div className="flex items-center gap-3">
-          <div
-            className="p-2.5 rounded-xl"
-            style={{ background: `rgba(${cat.shadow}, 0.12)` }}
-          >
-            <Icon size={20} style={{ color: cat.accent }} />
-          </div>
-          <h3 className="font-bold text-base leading-tight">{cat.label}</h3>
-        </div>
-        <span className="text-[10px] font-mono text-muted-foreground/50 mt-1">{String(index + 1).padStart(2, '0')}</span>
+      <div className="flex items-center justify-between mb-1.5 gap-3">
+        <span className="text-sm font-medium">{skill.name}</span>
+        <span className={`text-[10px] px-2 py-0.5 rounded-md border font-medium shrink-0 ${TIER_STYLE[skill.tier]}`}>
+          {skill.tier}
+        </span>
       </div>
-
-      {/* Tech chips */}
-      <div className="flex flex-wrap gap-2 mb-4 relative z-10">
-        {cat.tools.map((tool) => (
-          <span
-            key={tool.name}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border ${TAG_COLORS[tool.tag] || TAG_COLORS.Proficient}`}
-          >
-            {tool.name}
-            <span className="text-[9px] opacity-60">{tool.tag}</span>
-          </span>
-        ))}
-      </div>
-
-      {/* Highlight stat */}
-      <div className="relative z-10 mt-auto pt-3 border-t border-white/5">
-        <span className="text-xs text-muted-foreground font-mono">{cat.highlight}</span>
+      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${skill.level}%` }}
+          transition={{ duration: 0.7, delay: index * 0.04 + 0.15, ease: [0.4, 0, 0.2, 1] }}
+          className="h-full rounded-full"
+          style={{ background: `linear-gradient(90deg, rgba(${rgb},0.6), ${accent})` }}
+        />
       </div>
     </motion.div>
   )
@@ -226,13 +206,15 @@ function BentoCard({ cat, index }: { cat: typeof CATEGORIES[0]; index: number })
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const Skills = () => {
+  const [activeId, setActiveId] = useState('ai')
+  const active = CATEGORIES.find(c => c.id === activeId)!
+
   return (
     <section id="skills" className="py-20 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-b from-background/50 to-background" />
 
-      {/* Subtle dot grid background */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage: 'radial-gradient(circle, #28e98c 1px, transparent 1px)',
           backgroundSize: '40px 40px',
@@ -241,7 +223,7 @@ const Skills = () => {
 
       <div className="container-drake relative z-10">
 
-        {/* ── Header ─────────────────────────────────────────── */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -259,33 +241,109 @@ const Skills = () => {
             </h2>
           </ClipReveal>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            12 years across AI engineering, full-stack development, cloud architecture, and leading distributed teams
+            12 years across AI engineering, full-stack development, cloud architecture, and leading distributed teams.
           </p>
         </motion.div>
 
-        {/* ── Marquee ticker ─────────────────────────────────── */}
-        <div className="mb-16 -mx-4 sm:-mx-6 lg:-mx-8 relative overflow-hidden">
-          {/* Edge fade masks */}
+        {/* Marquee ticker */}
+        <div className="mb-14 -mx-4 sm:-mx-6 lg:-mx-8 relative overflow-hidden">
           <div className="absolute inset-y-0 left-0 w-24 z-10 bg-linear-to-r from-background to-transparent pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-24 z-10 bg-linear-to-l from-background to-transparent pointer-events-none" />
-
           <MarqueeRow items={MARQUEE_ROW_1} />
           <MarqueeRow items={MARQUEE_ROW_2} reverse />
         </div>
 
-        {/* ── Bento Grid ─────────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-16">
-          {CATEGORIES.map((cat, i) => (
-            <BentoCard key={cat.id} cat={cat} index={i} />
-          ))}
-        </div>
+        {/* Tab panel */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          {/* Category tabs */}
+          <div className="flex gap-2 overflow-x-auto pb-3 mb-6 scrollbar-hide">
+            {CATEGORIES.map(cat => {
+              const Icon = cat.icon
+              const isActive = cat.id === activeId
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveId(cat.id)}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-250 border shrink-0"
+                  style={
+                    isActive
+                      ? {
+                          borderColor: `rgba(${cat.rgb}, 0.45)`,
+                          background: `rgba(${cat.rgb}, 0.12)`,
+                          color: cat.accent,
+                        }
+                      : { borderColor: 'rgba(255,255,255,0.07)', background: 'transparent', color: '' }
+                  }
+                >
+                  <Icon size={15} style={isActive ? { color: cat.accent } : {}} className={isActive ? '' : 'text-muted-foreground'} />
+                  <span className={isActive ? '' : 'text-muted-foreground'}>{cat.label}</span>
+                </button>
+              )
+            })}
+          </div>
 
-        {/* ── Achievement stats ──────────────────────────────── */}
+          {/* Active panel */}
+          <div
+            className="rounded-2xl border p-6 md:p-8 min-h-[320px]"
+            style={{
+              borderColor: `rgba(${active.rgb}, 0.2)`,
+              background: `rgba(${active.rgb}, 0.03)`,
+            }}
+          >
+            {/* Panel header */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
+              <div className="flex items-center gap-3">
+                <div
+                  className="p-2.5 rounded-xl"
+                  style={{ background: `rgba(${active.rgb}, 0.15)` }}
+                >
+                  <active.icon size={18} style={{ color: active.accent }} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base" style={{ color: active.accent }}>
+                    {active.label}
+                  </h3>
+                  <p className="text-xs text-muted-foreground font-mono mt-0.5">{active.highlight}</p>
+                </div>
+              </div>
+              <span
+                className="text-xs font-mono px-2.5 py-1 rounded-lg"
+                style={{ background: `rgba(${active.rgb}, 0.1)`, color: `rgba(${active.rgb}, 0.7)` }}
+              >
+                {active.skills.length} skills
+              </span>
+            </div>
+
+            {/* Skills grid */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeId}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="grid sm:grid-cols-2 gap-x-8 gap-y-4"
+              >
+                {active.skills.map((skill, i) => (
+                  <SkillBar key={skill.name} skill={skill} accent={active.accent} rgb={active.rgb} index={i} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        {/* Achievement stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-4"
         >
           {ACHIEVEMENTS.map(({ icon: Icon, value, label, sub }, i) => (
@@ -294,7 +352,7 @@ const Skills = () => {
               className="relative rounded-2xl border border-primary/15 bg-primary/5 p-6 text-center overflow-hidden group hover:border-primary/30 transition-colors duration-300"
             >
               <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <Icon size={22} className="text-primary mx-auto mb-3 relative z-10" />
+              <Icon size={20} className="text-primary mx-auto mb-3 relative z-10" />
               <div className="text-4xl font-bold text-primary mb-1 relative z-10">{value}</div>
               <div className="font-semibold text-sm mb-1 relative z-10">{label}</div>
               <div className="text-xs text-muted-foreground relative z-10">{sub}</div>
