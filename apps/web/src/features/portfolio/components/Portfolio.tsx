@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, BookOpen, Star, ChevronRight, Github, Lock, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, BookOpen, Star, ChevronRight, GitBranch, Lock, ExternalLink } from 'lucide-react'
 import { PROJECTS, PROJECT_CATEGORIES } from '../data/projects.data'
 import type { Project, ProjectCategory } from '../data/projects.data'
 import { useTilt } from '../hooks/useTilt'
@@ -14,10 +14,11 @@ const CATEGORY_COLOR: Record<string, { accent: string; shadow: string; bg: strin
   'Developer Tools':        { accent: '#a855f7', shadow: '168, 85, 247',  bg: 'rgba(168,85,247,0.06)' },
   'Cloud & DevOps':         { accent: '#e4af12', shadow: '228, 175, 18',  bg: 'rgba(228,175,18,0.06)' },
   'Team Management':        { accent: '#fe6f1d', shadow: '254, 111, 29',  bg: 'rgba(254,111,29,0.06)' },
+  'Enterprise AI Platform': { accent: '#f472b6', shadow: '244, 114, 182', bg: 'rgba(244,114,182,0.06)' },
 }
 const DEFAULT_COLOR = { accent: '#28e98c', shadow: '40, 233, 140', bg: 'rgba(40,233,140,0.06)' }
 
-const PROJECT_INITIALS: Record<number, string> = { 1: 'RAG', 2: 'ERP', 3: 'AI', 4: 'OPS', 5: 'TMS', 6: 'MCP', 7: 'ACO', 8: 'VV' }
+const PROJECT_INITIALS: Record<number, string> = { 1: 'RAG', 2: 'ERP', 3: 'AI', 4: 'OPS', 5: 'TMS', 6: 'MCP', 7: 'ACO', 8: 'VV', 9: 'VTX', 10: 'DSV', 11: 'C2C' }
 
 // ─── Filter tab labels (short for mobile) ─────────────────────────────────────
 const TAB_LABEL: Record<string, string> = {
@@ -27,6 +28,7 @@ const TAB_LABEL: Record<string, string> = {
   'Developer Tools': 'Dev Tools',
   'Cloud & DevOps': 'Cloud',
   'Team Management': 'Leadership',
+  'Enterprise AI Platform': 'AI Platform',
 }
 
 // ─── Shared visual backdrop for cards ────────────────────────────────────────
@@ -142,7 +144,7 @@ function HeroCard({ project, onOpen }: { project: Project; onOpen: (p: Project) 
                   className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors duration-200"
                   title="Private enterprise repo — code samples on request"
                 >
-                  <Github size={13} />
+                  <GitBranch size={13} />
                   <Lock size={10} />
                 </a>
               )}
@@ -258,7 +260,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
                 className="flex items-center gap-0.5 text-muted-foreground hover:text-foreground transition-colors duration-200"
                 title="Private enterprise repo — code samples on request"
               >
-                <Github size={11} />
+                <GitBranch size={11} />
                 <Lock size={9} />
               </a>
             )}
