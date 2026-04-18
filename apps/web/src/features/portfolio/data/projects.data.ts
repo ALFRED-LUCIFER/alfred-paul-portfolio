@@ -382,6 +382,37 @@ async function fullStackFlow(plan: Plan) {
       },
     },
   },
+  {
+    id: 8,
+    title: 'VelocityVote — Planning Poker for Distributed Teams',
+    description:
+      'Open-source planning poker app built for distributed agile teams. Real-time voting, anonymous reveal to eliminate anchor bias, multiple card decks, and team polls — no signup, free forever.',
+    category: 'Developer Tools',
+    technologies: ['React', 'TypeScript', 'Pusher Channels', 'Next.js', 'WebSockets', 'Apache 2.0'],
+    features: [
+      'Real-time sync via Pusher Channels — zero lag, no refresh',
+      'Anonymous votes until host reveals — eliminates anchor bias',
+      'Multiple card decks: Fibonacci, T-shirt sizes, Powers of 2',
+      'Team Polls for sprint goals, retro topics, and office votes',
+    ],
+    liveUrl: 'https://velocityvote.app',
+    githubUrl: 'https://github.com/alfredpaul',
+    featured: true,
+    caseStudy: {
+      problem:
+        'Distributed agile teams waste 30–60 minutes per planning session on misaligned estimates and anchor bias — senior engineers call a number first, everyone else follows. Existing tools require account creation, paid plans, or complex setup, creating friction that kills adoption.',
+      solution:
+        'Built VelocityVote as a free, open-source planning poker tool. No accounts, no setup — paste a link and start estimating in 30 seconds. Real-time vote sync via Pusher Channels keeps all participants in sync. Votes stay anonymous until the host reveals them, eliminating anchor bias. Supports Fibonacci, T-shirt sizes, and Powers of 2 decks. Team Polls handle quick team decisions beyond estimation. Published under Apache 2.0 — free for any team, forever.',
+      impact:
+        'Live public product, free for the global agile community. Eliminates anchor bias in estimation sessions, reduces planning overhead, and works for fully distributed teams across any timezone with zero setup friction.',
+      metrics: [
+        { label: 'Setup Time', value: '30 sec' },
+        { label: 'Cost to Teams', value: 'Free' },
+        { label: 'License', value: 'Apache 2.0' },
+        { label: 'Signup Required', value: 'None' },
+      ],
+    },
+  },
 ]
 
 export const PROJECT_CATEGORIES = ['All', ...new Set(PROJECTS.map((p) => p.category))] as const

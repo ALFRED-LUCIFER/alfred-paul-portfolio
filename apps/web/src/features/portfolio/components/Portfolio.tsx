@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, BookOpen, Star, ChevronRight, Github, Lock } from 'lucide-react'
+import { ArrowUpRight, BookOpen, Star, ChevronRight, Github, Lock, ExternalLink } from 'lucide-react'
 import { PROJECTS, PROJECT_CATEGORIES } from '../data/projects.data'
 import type { Project, ProjectCategory } from '../data/projects.data'
 import { useTilt } from '../hooks/useTilt'
@@ -17,7 +17,7 @@ const CATEGORY_COLOR: Record<string, { accent: string; shadow: string; bg: strin
 }
 const DEFAULT_COLOR = { accent: '#28e98c', shadow: '40, 233, 140', bg: 'rgba(40,233,140,0.06)' }
 
-const PROJECT_INITIALS: Record<number, string> = { 1: 'RAG', 2: 'ERP', 3: 'AI', 4: 'OPS', 5: 'TMS' }
+const PROJECT_INITIALS: Record<number, string> = { 1: 'RAG', 2: 'ERP', 3: 'AI', 4: 'OPS', 5: 'TMS', 6: 'MCP', 7: 'ACO', 8: 'VV' }
 
 // ─── Filter tab labels (short for mobile) ─────────────────────────────────────
 const TAB_LABEL: Record<string, string> = {
@@ -121,7 +121,19 @@ function HeroCard({ project, onOpen }: { project: Project; onOpen: (p: Project) 
 
           <div className="relative z-10 flex items-center justify-between mt-5 pt-4 border-t border-white/5">
             <div className="flex items-center gap-3">
-              {project.githubUrl && (
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/15 text-primary border border-primary/30 hover:bg-primary/25 transition-colors duration-200"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  Live
+                  <ExternalLink size={10} />
+                </a>
+              ) : project.githubUrl && (
                 <a
                   href={project.githubUrl}
                   target="_blank"
@@ -226,7 +238,18 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
             ))}
           </div>
           <div className="flex items-center gap-2">
-            {project.githubUrl && (
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1 text-[9px] font-semibold px-1.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/30"
+              >
+                <span className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+                Live
+              </a>
+            ) : project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
