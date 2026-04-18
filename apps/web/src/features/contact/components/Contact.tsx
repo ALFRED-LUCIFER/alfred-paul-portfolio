@@ -90,12 +90,12 @@ const Contact = () => {
     { platform: "Twitter", url: "https://twitter.com/alfredpaul", icon: Twitter, color: "text-muted-foreground hover:text-primary" }
   ]
 
-  const budgetOptions = [
-    "Under $10k",
-    "$10k - $25k", 
-    "$25k - $50k",
-    "$50k - $100k",
-    "$100k+"
+  const inquiryOptions = [
+    "Job Opportunity",
+    "Technical Collaboration",
+    "Consulting Inquiry",
+    "Speaking / Advisory",
+    "General Inquiry",
   ]
 
   return (
@@ -118,11 +118,11 @@ const Contact = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Let's Work{' '}
-            <span className="text-gradient">Together!</span>
+            Let's{' '}
+            <span className="text-gradient">Connect</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to build something amazing with AI-integrated development? Let's discuss your project
+            Open to senior AI engineering &amp; engineering manager roles — or a conversation about building AI platforms at scale.
           </p>
         </motion.div>
 
@@ -211,35 +211,38 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Project Benefits */}
+            {/* What I'm Looking For */}
             <div className="card-drake p-6">
-              <h4 className="font-bold text-lg mb-4">Why Work With Me?</h4>
-              <ul className="space-y-3">
+              <h4 className="font-bold text-lg mb-4">What I'm Looking For</h4>
+              <ul className="space-y-3 mb-5">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
                   <span className="text-sm text-muted-foreground">
-                    40% faster development with AI-integrated workflows
+                    <strong className="text-foreground">Role:</strong> Engineering Manager, AI Platform Lead, or Principal AI Engineer
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
                   <span className="text-sm text-muted-foreground">
-                    11+ years of enterprise-level experience
+                    <strong className="text-foreground">Location:</strong> Remote-first or hybrid (Dubai-based, open to relocation)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
                   <span className="text-sm text-muted-foreground">
-                    Proven track record leading distributed teams
+                    <strong className="text-foreground">Domain:</strong> AI-first products, enterprise AI platforms, developer tooling
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
                   <span className="text-sm text-muted-foreground">
-                    Full-stack expertise from frontend to cloud deployment
+                    <strong className="text-foreground">Team:</strong> High-ownership culture, shipping AI to production (not just R&amp;D)
                   </span>
                 </li>
               </ul>
+              <p className="text-xs text-muted-foreground border-t border-border pt-4">
+                12 years at one company means 12 years of compounding enterprise trust — ask my references.
+              </p>
             </div>
           </motion.div>
 
@@ -346,14 +349,14 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                      placeholder="Project discussion, collaboration, etc."
+                      placeholder="Job opportunity, collaboration, consulting, etc."
                     />
                   </motion.div>
 
-                  {/* Budget */}
+                  {/* Inquiry Type */}
                   <motion.div variants={fadeInUp}>
                     <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      PROJECT BUDGET
+                      INQUIRY TYPE
                     </label>
                     <select
                       name="budget"
@@ -361,8 +364,8 @@ const Contact = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     >
-                      <option value="">Select budget range</option>
-                      {budgetOptions.map((option) => (
+                      <option value="">Select inquiry type</option>
+                      {inquiryOptions.map((option) => (
                         <option key={option} value={option}>{option}</option>
                       ))}
                     </select>

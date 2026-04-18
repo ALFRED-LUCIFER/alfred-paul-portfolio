@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { BookOpen, Clock, Tag, ArrowRight, Brain, Cpu, Users } from 'lucide-react'
+import { BookOpen, Clock, Tag, ArrowRight, Brain, Cpu, Users, Shield, Linkedin } from 'lucide-react'
 
 interface Article {
   id: number
@@ -15,6 +15,42 @@ interface Article {
 }
 
 const articles: Article[] = [
+  {
+    id: 4,
+    title: 'Agentic AI in the Enterprise: What Works, What Fails, and What\'s Next',
+    excerpt:
+      'We shipped an AI agent that reads Jira tickets and produces reviewed, tested code in 4 hours. Here\'s what we learned about when agentic systems succeed in production — and when they silently fail.',
+    readTime: '7 min read',
+    tag: 'Agentic AI',
+    tagColor: 'text-primary',
+    tagBg: 'bg-primary/10',
+    icon: Brain,
+    date: 'Mar 2025',
+    body: [
+      'Everyone is talking about AI agents. Most enterprise pilots quietly fail. The difference between demo and production is not the model — it\'s the guardrails, the human-in-the-loop design, and whether the agent\'s outputs can be verified before they cause damage.',
+      'In our Jira-to-production agent (built with Claude Agent SDK and MCP), the turning point was introducing a satisfaction scoring system. Each sub-agent — code generation, test writing, Cypress, code review — scores its own output on a 100-point rubric against company standards. Agents iterate until the threshold is met. This removed the inconsistency that makes agents unpredictable in enterprise settings.',
+      'The biggest failure mode we observed was "confident wrongness" — agents that produce plausible-looking code that subtly violates architecture constraints. The fix: always include a domain-aware review agent with access to your actual coding standards, not just generic best practices.',
+      'What\'s next: multi-agent systems where agents can spawn sub-agents dynamically, escalate to humans intelligently, and maintain shared context across long-running workflows. The frontier is not smarter models — it\'s better orchestration.',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Responsible AI in the Enterprise: Why Governance Is Now an Engineering Problem',
+    excerpt:
+      'AI governance used to be a policy team\'s problem. Now it\'s in every sprint. How engineering leaders can build responsible AI into their delivery pipelines — not bolt it on after.',
+    readTime: '6 min read',
+    tag: 'Responsible AI',
+    tagColor: 'text-orange-400',
+    tagBg: 'bg-orange-500/10',
+    icon: Shield,
+    date: 'Jan 2025',
+    body: [
+      'When we built our on-prem MCP server for Jira and Confluence, the number one constraint was data sovereignty — zero cloud egress. That wasn\'t a legal afterthought; it was a first-class engineering requirement that shaped every architectural decision.',
+      'Responsible AI in enterprise settings means: data stays where compliance requires it, model outputs are auditable, human override is always available, and the system fails safe. None of these are impossible — but they require engineering teams to own them, not outsource them to a policy document.',
+      'Practical steps that worked for us: (1) All AI outputs are logged with the context that generated them — full auditability. (2) Every AI action that affects external systems requires human confirmation. (3) We built a "sensitivity classifier" that routes queries containing PII or confidential terms to on-prem models only. (4) Monthly red-team sessions where engineers try to jailbreak our own systems.',
+      'The engineering leaders who will be most valuable at big AI companies aren\'t just the ones who can ship agents — they\'re the ones who can ship agents that are auditable, governable, and trustworthy. That\'s the real moat.',
+    ],
+  },
   {
     id: 1,
     title: 'Building RAG Pipelines for Enterprise Knowledge Management',
@@ -101,12 +137,21 @@ const Insights = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Insights &{' '}
-            <span className="text-gradient">Articles</span>
+            Published{' '}
+            <span className="text-gradient">Thinking</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Real lessons from 12+ years building enterprise AI systems, leading distributed teams, and transforming development workflows
           </p>
+          <a
+            href="https://www.linkedin.com/in/alfred-paul-56438454"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-colors duration-200"
+          >
+            <Linkedin className="w-4 h-4" />
+            Follow on LinkedIn for more
+          </a>
         </motion.div>
 
         {/* Articles Grid */}
@@ -207,9 +252,20 @@ const Insights = () => {
                   <p key={i} className="text-muted-foreground leading-relaxed text-sm">{para}</p>
                 ))}
               </div>
-              <div className="mt-8 pt-6 border-t border-border flex items-center gap-3">
-                <BookOpen className="w-4 h-4 text-muted-foreground" />
-                <span className="text-xs text-muted-foreground">Written by Alfred Paul · AI Engineering Manager · Dubai, UAE</span>
+              <div className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">Written by Alfred Paul · AI Engineering Manager · Dubai, UAE</span>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/alfred-paul-56438454"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:underline font-medium"
+                >
+                  <Linkedin className="w-3 h-3" />
+                  Follow on LinkedIn
+                </a>
               </div>
             </dialog>
           )

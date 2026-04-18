@@ -105,20 +105,24 @@ const About = () => {
                 </h3>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    With over <strong className="text-primary">12 years of experience</strong> in software development, 
-                    I've evolved from a passionate developer to a strategic leader who bridges the gap between 
+                    With over <strong className="text-primary">12 years of experience</strong> in software development,
+                    I've evolved from a passionate developer to a strategic leader who bridges the gap between
                     cutting-edge technology and business success.
                   </p>
                   <p>
-                    At <strong className="text-foreground">LiSEC Group</strong>, I've spearheaded the integration of AI tools 
-                    into our development workflows, resulting in <strong className="text-primary">40% productivity gains </strong> 
+                    At <strong className="text-foreground">LiSEC Group</strong>, I've spearheaded the integration of AI tools
+                    into our development workflows, resulting in <strong className="text-primary">40% productivity gains</strong>
                     and more reliable software delivery across our global teams.
                   </p>
                   <p>
-                    My approach combines technical excellence with strategic thinking - I don't just write code, 
-                    I architect solutions that solve real-world problems and drive business growth. From modernizing 
-                    legacy ERP systems to implementing cloud-native architectures, I'm passionate about leveraging 
-                    technology to create measurable impact.
+                    My approach combines technical excellence with strategic thinking — from modernizing legacy ERP systems
+                    to building agentic AI platforms with Claude Agent SDK and MCP. I'm now looking to bring this depth to
+                    a larger stage: <strong className="text-foreground">Engineering Manager, AI Platform Lead, or Principal AI Engineer</strong> at a company
+                    where AI is the core product, not a side project.
+                  </p>
+                  <p className="text-sm italic border-l-2 border-primary/40 pl-4">
+                    12 years at one company isn't a constraint — it's 12 years of compounding enterprise trust,
+                    deep domain knowledge, and shipping real AI to production. Ask my references.
                   </p>
                 </div>
               </div>

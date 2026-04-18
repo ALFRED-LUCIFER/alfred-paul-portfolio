@@ -48,7 +48,7 @@ export const PROJECTS: Project[] = [
       'Multi-language support',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: true,
     caseStudy: {
       problem:
@@ -79,7 +79,7 @@ export const PROJECTS: Project[] = [
       '30% faster deployment cycles',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: true,
     caseStudy: {
       problem:
@@ -110,7 +110,7 @@ export const PROJECTS: Project[] = [
       'Reduced testing cycles',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: true,
     caseStudy: {
       problem:
@@ -141,7 +141,7 @@ export const PROJECTS: Project[] = [
       'Comprehensive monitoring',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: false,
     caseStudy: {
       problem:
@@ -172,7 +172,7 @@ export const PROJECTS: Project[] = [
       'Multi-timezone support',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: false,
     caseStudy: {
       problem:
@@ -203,7 +203,7 @@ export const PROJECTS: Project[] = [
       'Copilot Studio integration for enterprise-grade UX',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: true,
     caseStudy: {
       problem:
@@ -234,7 +234,7 @@ export const PROJECTS: Project[] = [
       'Satisfaction scoring system enforces company standards',
     ],
     liveUrl: null,
-    githubUrl: null,
+    githubUrl: 'https://github.com/alfredpaul',
     featured: true,
     caseStudy: {
       problem:

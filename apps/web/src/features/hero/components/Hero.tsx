@@ -1,6 +1,6 @@
 import { useRef, Suspense, lazy } from 'react'
 import { motion, useInView } from 'motion/react'
-import { ChevronDown, Download } from 'lucide-react'
+import { ChevronDown, Download, Briefcase, ArrowRight } from 'lucide-react'
 import { TypewriterText } from '../../../shared/ui/TypewriterText'
 import { useCountUp } from '../../../shared/hooks/useCountUp'
 import { useParallax } from '../../../shared/hooks/useParallax'
@@ -16,6 +16,12 @@ const ROLES = [
   'Full-Stack .NET & React Architect',
   'AI Integration Specialist',
   'Enterprise Solutions Engineer',
+]
+
+const TARGET_ROLES = [
+  'Engineering Manager',
+  'AI Platform Lead',
+  'Principal AI Engineer',
 ]
 
 const Hero = () => {
@@ -51,10 +57,14 @@ const Hero = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-4 md:mb-6"
+              className="mb-4 md:mb-6 flex flex-col sm:flex-row sm:items-center gap-3"
             >
               <span className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground font-medium">
                 INTRODUCE
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/15 text-primary border border-primary/30 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Open to Senior AI &amp; EM Roles
               </span>
             </motion.div>
 
@@ -76,17 +86,37 @@ const Hero = () => {
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 md:mb-5 max-w-2xl mx-auto lg:mx-0"
             >
               12 years building scalable enterprise apps with .NET Core, React &amp; Python.
               Boosted dev productivity by 40% through Copilot &amp; Cursor.ai. Certified Scrum Master.
             </motion.p>
 
+            {/* Target role chips */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-wrap gap-2 justify-center lg:justify-start mb-6 md:mb-8"
+            >
+              <span className="text-xs text-muted-foreground self-center mr-1 hidden sm:inline">
+                <Briefcase size={12} className="inline mr-1" />Targeting:
+              </span>
+              {TARGET_ROLES.map((role) => (
+                <span
+                  key={role}
+                  className="text-xs px-3 py-1 rounded-full border border-border bg-muted/40 text-muted-foreground font-medium hover:border-primary/40 hover:text-primary transition-colors duration-200"
+                >
+                  {role}
+                </span>
+              ))}
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-12"
+              className="mb-12 flex flex-wrap gap-3 justify-center lg:justify-start"
             >
               <motion.a
                 ref={magnetic.ref as React.RefObject<HTMLAnchorElement>}
@@ -99,6 +129,16 @@ const Hero = () => {
               >
                 <Download size={18} />
                 DOWNLOAD RESUME
+              </motion.a>
+              <motion.a
+                href="#portfolio"
+                onClick={(e) => { e.preventDefault(); document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' }) }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="text-base px-8 py-4 inline-flex items-center gap-2 no-underline rounded-md border border-primary/40 text-primary hover:bg-primary/10 transition-all duration-200 font-medium"
+              >
+                View My AI Work
+                <ArrowRight size={18} />
               </motion.a>
             </motion.div>
 

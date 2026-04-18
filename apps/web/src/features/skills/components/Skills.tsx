@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Brain, Code, Database, Cloud, Users, Cog, Zap, TrendingUp, Award } from 'lucide-react'
+import { Brain, Code, Database, Cloud, Users, Cog, Zap, TrendingUp, Award, Telescope } from 'lucide-react'
 import { ClipReveal } from '../../../shared/ui/ClipReveal'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -139,6 +139,24 @@ const CATEGORIES: Category[] = [
       { name: 'System Integration', tier: 'Expert', level: 96 },
       { name: 'Performance Tuning', tier: 'Expert', level: 93 },
       { name: 'Security Patterns', tier: 'Advanced', level: 82 },
+    ],
+  },
+  {
+    id: 'learning',
+    label: 'Learning Now',
+    icon: Telescope,
+    accent: '#a78bfa',
+    rgb: '167,139,250',
+    highlight: 'Where AI is heading — staying ahead of the curve',
+    skills: [
+      { name: 'LLM Fine-Tuning (LoRA/QLoRA)', tier: 'Proficient', level: 45 },
+      { name: 'RAGAS / LLM Evaluation', tier: 'Proficient', level: 50 },
+      { name: 'LangSmith / LLMOps', tier: 'Proficient', level: 48 },
+      { name: 'Multimodal AI (Vision + LLM)', tier: 'Proficient', level: 40 },
+      { name: 'AI Governance & Safety', tier: 'Proficient', level: 55 },
+      { name: 'MLflow / Experiment Tracking', tier: 'Proficient', level: 42 },
+      { name: 'Hugging Face Transformers', tier: 'Proficient', level: 52 },
+      { name: 'Edge AI / ONNX Quantization', tier: 'Proficient', level: 35 },
     ],
   },
 ]
@@ -312,12 +330,19 @@ const Skills = () => {
                   <p className="text-xs text-muted-foreground font-mono mt-0.5">{active.highlight}</p>
                 </div>
               </div>
-              <span
-                className="text-xs font-mono px-2.5 py-1 rounded-lg"
-                style={{ background: `rgba(${active.rgb}, 0.1)`, color: `rgba(${active.rgb}, 0.7)` }}
-              >
-                {active.skills.length} skills
-              </span>
+              <div className="flex items-center gap-2">
+                {active.id === 'learning' && (
+                  <span className="text-[10px] px-2.5 py-1 rounded-lg border border-violet-400/30 text-violet-400 bg-violet-500/10 font-medium">
+                    In Progress
+                  </span>
+                )}
+                <span
+                  className="text-xs font-mono px-2.5 py-1 rounded-lg"
+                  style={{ background: `rgba(${active.rgb}, 0.1)`, color: `rgba(${active.rgb}, 0.7)` }}
+                >
+                  {active.skills.length} skills
+                </span>
+              </div>
             </div>
 
             {/* Skills grid */}

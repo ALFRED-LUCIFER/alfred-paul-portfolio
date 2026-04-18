@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, BookOpen, Star, ChevronRight } from 'lucide-react'
+import { ArrowUpRight, BookOpen, Star, ChevronRight, Github, Lock } from 'lucide-react'
 import { PROJECTS, PROJECT_CATEGORIES } from '../data/projects.data'
 import type { Project, ProjectCategory } from '../data/projects.data'
 import { useTilt } from '../hooks/useTilt'
@@ -120,7 +120,22 @@ function HeroCard({ project, onOpen }: { project: Project; onOpen: (p: Project) 
           </div>
 
           <div className="relative z-10 flex items-center justify-between mt-5 pt-4 border-t border-white/5">
-            <span className="text-xs text-muted-foreground font-mono">{project.features[0]}</span>
+            <div className="flex items-center gap-3">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  title="Private enterprise repo — code samples on request"
+                >
+                  <Github size={13} />
+                  <Lock size={10} />
+                </a>
+              )}
+              <span className="text-xs text-muted-foreground font-mono">{project.features[0]}</span>
+            </div>
             <button className="flex items-center gap-1 text-xs font-semibold transition-all duration-200 group-hover:gap-2"
               style={{ color: color.accent }}>
               Case Study <ChevronRight size={13} />
@@ -210,10 +225,25 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: (p: Projec
               </div>
             ))}
           </div>
-          <span className="flex items-center gap-0.5 text-[10px] font-medium group-hover:gap-1.5 transition-all"
-            style={{ color: color.accent }}>
-            Details <ArrowUpRight size={10} />
-          </span>
+          <div className="flex items-center gap-2">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-0.5 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                title="Private enterprise repo — code samples on request"
+              >
+                <Github size={11} />
+                <Lock size={9} />
+              </a>
+            )}
+            <span className="flex items-center gap-0.5 text-[10px] font-medium group-hover:gap-1.5 transition-all"
+              style={{ color: color.accent }}>
+              Details <ArrowUpRight size={10} />
+            </span>
+          </div>
         </div>
       </div>
     </motion.div>

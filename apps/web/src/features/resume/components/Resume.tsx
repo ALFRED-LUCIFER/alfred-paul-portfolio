@@ -97,16 +97,6 @@ const Resume = () => {
       verifyUrl: "https://www.linkedin.com/in/alfred-paul-56438454/details/certifications/"
     },
     {
-      title: "GitHub Copilot & AI-Assisted Development",
-      issuer: "GitHub / Microsoft",
-      year: "2024",
-      description: "Advanced AI pair programming, prompt engineering, and enterprise Copilot deployment",
-      color: "text-slate-300",
-      bg: "bg-slate-500/10",
-      badge: null,
-      verifyUrl: "https://www.linkedin.com/in/alfred-paul-56438454/details/certifications/"
-    },
-    {
       title: "Professional Scrum Master™ I (PSM I)",
       issuer: "Scrum.org",
       year: "2023",
@@ -420,6 +410,7 @@ const Resume = () => {
               </motion.div>
             ))}
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -11,6 +11,7 @@ import { Testimonials } from './features/testimonials'
 import { Contact } from './features/contact'
 import { Insights } from './features/insights'
 import { LeadershipPhilosophy } from './features/leadership'
+import { AIRoadmap } from './features/roadmap'
 import { ScrollProgressBar } from './shared/ui/ScrollProgressBar'
 import { BackToTop } from './shared/ui/BackToTop'
 import { LoadingScreen } from './shared/ui/LoadingScreen'
@@ -63,6 +64,10 @@ function App() {
 
           <section id="leadership" className="section-padding">
             <LeadershipPhilosophy />
+          </section>
+
+          <section id="ai-roadmap" className="section-padding">
+            <AIRoadmap />
           </section>
 
           <section id="insights" className="section-padding bg-muted/20">
