@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Calendar, MapPin, Award, BookOpen, Briefcase, GraduationCap, ExternalLink, Shield } from 'lucide-react'
+import { Calendar, MapPin, Award, BookOpen, Briefcase, GraduationCap, ExternalLink, Shield, Rocket, Globe } from 'lucide-react'
 
 const Resume = () => {
   // Animation variants
@@ -353,6 +353,121 @@ const Resume = () => {
                 </div>
               ))}
             </div>
+          </motion.div>
+        </div>
+
+        {/* Independent Ventures */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3 mb-12"
+          >
+            <div className="p-3 bg-primary/10 rounded-xl">
+              <Rocket className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold">Independent Ventures</h3>
+            <span className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/25 font-medium">
+              Builder · Side Projects · Client Work
+            </span>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-5"
+          >
+            {[
+              {
+                name: 'Vantastix',
+                role: 'Founder & Full-Stack Engineer',
+                period: '2025 – Present',
+                description: 'GenZ custom print e-commerce — Next.js 15, MongoDB, Razorpay, Cloudinary, Three.js. 137+ unit tests, CI/CD, 2-hour Pune delivery.',
+                tags: ['Next.js 15', 'MongoDB', 'Razorpay', 'Vitest'],
+                live: 'https://vantastix.in',
+                github: 'https://github.com/ALFRED-LUCIFER/vantastix',
+                badge: 'Live · Open Source',
+                badgeColor: 'text-primary bg-primary/10 border-primary/25',
+              },
+              {
+                name: 'VelocityVote',
+                role: 'Creator & Maintainer',
+                period: '2025',
+                description: 'Open-source planning poker for distributed agile teams — real-time Pusher sync, anonymous reveal, multiple decks. Apache 2.0, free forever.',
+                tags: ['React', 'TypeScript', 'Pusher', 'Apache 2.0'],
+                live: 'https://velocityvote.app',
+                github: 'https://github.com/alfredpaul',
+                badge: 'Live · OSS',
+                badgeColor: 'text-primary bg-primary/10 border-primary/25',
+              },
+              {
+                name: 'Dubai Spotter V2',
+                role: 'Solo Architect & Engineer',
+                period: '2024 – 2025',
+                description: 'AI real estate CRM for Dubai agencies — monorepo (NestJS + Next.js 16 + 2 Expo apps), Retell AI calling, PostGIS, Stripe multi-tenant, 49+ modules.',
+                tags: ['NestJS', 'React Native', 'Retell AI', 'PostGIS', 'Stripe'],
+                live: null,
+                github: null,
+                badge: 'Private CRM',
+                badgeColor: 'text-muted-foreground bg-muted/40 border-border',
+              },
+              {
+                name: 'Clicks2Compare',
+                role: 'Client Website — Lead Developer',
+                period: '2024',
+                description: 'UAE financial advisory platform — mortgage comparison across 20+ banks, Golden Visa, SME Finance, Business Setup. 14,200+ mortgage plans facilitated.',
+                tags: ['React', 'TypeScript', 'Next.js', 'SEO'],
+                live: 'https://www.clicks2compare.com',
+                github: null,
+                badge: 'Client · Live',
+                badgeColor: 'text-blue-400 bg-blue-500/10 border-blue-400/25',
+              },
+            ].map((project, i) => (
+              <motion.div
+                key={i}
+                variants={timelineVariant}
+                className="card-drake p-5 group hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
+              >
+                <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
+                  <div>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <h4 className="font-bold text-base">{project.name}</h4>
+                      <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold ${project.badgeColor}`}>
+                        {project.badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-primary font-medium">{project.role}</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Calendar className="w-3 h-3" />
+                    {project.period}
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.tags.map(t => (
+                    <span key={t} className="text-[10px] px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-mono">{t}</span>
+                  ))}
+                </div>
+                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline">
+                      <Globe className="w-3 h-3" /> Live Site
+                    </a>
+                  )}
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
+                      <ExternalLink className="w-3 h-3" /> GitHub
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
 

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Code2, Lightbulb, Users, Rocket, Award, Target, Download } from 'lucide-react'
+import { Code2, Lightbulb, Users, Rocket, Award, Target, Download, Globe } from 'lucide-react'
 import { ClipReveal } from '../../../shared/ui/ClipReveal'
 
 const About = () => {
@@ -58,6 +58,11 @@ const About = () => {
       icon: Target,
       title: "Strategic Vision",
       description: "Aligning technical implementations with business objectives to deliver high-impact software solutions"
+    },
+    {
+      icon: Globe,
+      title: "Product Builder",
+      description: "Shipped 4 independent products — Vantastix (live e-commerce), VelocityVote (open-source), Dubai Spotter V2 (AI CRM), Clicks2Compare (fintech platform) — alongside a 12-year enterprise career"
     }
   ]
 
