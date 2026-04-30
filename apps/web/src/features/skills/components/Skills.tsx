@@ -52,7 +52,7 @@ const CATEGORIES: Category[] = [
     skills: [
       { name: 'Qwen + RAG', tier: 'Expert', level: 95 },
       { name: 'LangChain', tier: 'Expert', level: 92 },
-      { name: 'GitHub Copilot', tier: 'Expert', level: 98 },
+      { name: 'GitHub Copilot', tier: 'Certified', level: 98 },
       { name: 'Cursor.ai', tier: 'Expert', level: 95 },
       { name: 'OpenAI APIs', tier: 'Advanced', level: 88 },
       { name: 'Prompt Engineering', tier: 'Expert', level: 93 },
@@ -171,7 +171,7 @@ const TIER_STYLE: Record<Tier, string> = {
 const ACHIEVEMENTS = [
   { icon: Zap, value: '+40%', label: 'Dev Productivity', sub: 'via AI tooling adoption' },
   { icon: TrendingUp, value: '-60%', label: 'Release Cycles', sub: 'through DevOps pipelines' },
-  { icon: Award, value: '7', label: 'Certifications', sub: 'Scrum · Microsoft · Google · Azure · Python' },
+  { icon: Award, value: '8', label: 'Certifications', sub: 'GitHub · Scrum · Microsoft · Google · Azure · Python' },
 ]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────

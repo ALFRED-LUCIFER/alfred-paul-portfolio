@@ -87,6 +87,16 @@ const Resume = () => {
   // Certifications — sorted by year descending
   const certifications = [
     {
+      title: "GitHub Copilot Certified (GH-300)",
+      issuer: "GitHub / Microsoft",
+      year: "2026",
+      description: "AI-driven code completion, prompt engineering, responsible AI practices, and optimising software development productivity, quality, and security with GitHub Copilot",
+      color: "text-violet-400",
+      bg: "bg-violet-500/10",
+      badge: "/images/Github-copilot.png",
+      verifyUrl: "https://learn.microsoft.com/api/credentials/share/en-us/AlfredPaul-9725/E4D292AE9EDD022B?sharingId=9E9FB7700C134DB8"
+    },
+    {
       title: "Microsoft Certified: AI Transformation Leader",
       issuer: "Microsoft",
       year: "2024",
