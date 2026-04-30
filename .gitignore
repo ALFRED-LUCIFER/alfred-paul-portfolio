@@ -62,6 +62,9 @@ dist
 # Gatsby files
 .cache/
 public
+!apps/web/public/
+!apps/web/public/images/
+!apps/web/public/images/Github-copilot.png
 
 # Vite build outputs
 dist/
@@ -181,6 +184,8 @@ temp/
 *CV*
 *resume*
 *cv*
+!apps/web/src/features/resume/
+!apps/web/src/assets/Alfred_Paul_Engineering_Manager.pdf
 
 # Image originals (keep converted web images)
 *.HEIC

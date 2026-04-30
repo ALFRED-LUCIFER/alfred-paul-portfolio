@@ -104,7 +104,7 @@ const Resume = () => {
       color: "text-blue-400",
       bg: "bg-blue-500/10",
       badge: "/images/ai-transformation-leader.png",
-      verifyUrl: "https://www.linkedin.com/in/alfred-paul-56438454/details/certifications/"
+      verifyUrl: "https://learn.microsoft.com/en-us/users/alfredpaul-9725/credentials/e4d292ae9edd022b"
     },
     {
       title: "Professional Scrum Master™ I (PSM I)",
@@ -134,7 +134,7 @@ const Resume = () => {
       color: "text-red-400",
       bg: "bg-red-500/10",
       badge: "/images/Google.png",
-      verifyUrl: "https://www.linkedin.com/in/alfred-paul-56438454/details/certifications/"
+      verifyUrl: "https://www.credly.com/badges/fca21388-2459-4c06-b32b-c8d7a24d1fa1/linked_in_profile"
     },
     {
       title: "PCEP – Certified Entry-Level Python Programmer",
@@ -144,7 +144,7 @@ const Resume = () => {
       color: "text-yellow-400",
       bg: "bg-yellow-500/10",
       badge: "/images/pythoncert.png",
-      verifyUrl: "https://pythoninstitute.org/pcep"
+      verifyUrl: "https://www.credly.com/badges/fa176b3b-01dd-4daa-9526-e19ddb895b6d/linked_in_profile"
     },
     {
       title: "Programming in Python",
