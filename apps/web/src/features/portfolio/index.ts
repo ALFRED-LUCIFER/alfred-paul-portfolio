@@ -1,1 +1,2 @@
-export { default as Portfolio } from './components/Portfolio'
+// Superseded by features/systems — this folder is pending deletion.
+export {}

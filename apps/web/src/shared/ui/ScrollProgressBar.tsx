@@ -17,9 +17,9 @@ export function ScrollProgressBar() {
       style={{
         scaleX,
         transformOrigin: 'left',
-        boxShadow: '0 0 8px rgba(40, 233, 140, 0.6)',
+        boxShadow: '0 0 8px hsl(var(--accent-cyan) / 0.6)',
       }}
-      className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-[100]"
+      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent-cyan via-accent-indigo to-accent-violet z-[100]"
     />
   )
 }

@@ -21,8 +21,8 @@ export function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-primary text-black rounded-full shadow-lg flex items-center justify-center"
-          style={{ boxShadow: '0 0 20px rgba(40, 233, 140, 0.4)' }}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-accent-cyan text-background rounded-full shadow-lg flex items-center justify-center"
+          style={{ boxShadow: '0 0 20px hsl(var(--accent-cyan) / 0.4)' }}
           aria-label="Back to top"
         >
           <ChevronUp size={20} />

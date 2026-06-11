@@ -1,10 +1,28 @@
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, Paperclip, CheckCircle, AlertCircle, Linkedin, Github, Twitter } from 'lucide-react'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Paperclip,
+  CheckCircle,
+  AlertCircle,
+  Linkedin,
+  Github,
+  FileDown,
+} from 'lucide-react'
 import { submitContact } from '../../../infrastructure/api/contact.client'
+import { SectionShell } from '../../../shared/ui/SectionShell'
+import { GlassPanel } from '../../../shared/ui/GlassPanel'
+import { Reveal } from '../../../shared/ui/Reveal'
+import { GhostLink } from '../../../shared/ui/Buttons'
+import resumePdf from '../../../assets/Alfred_Paul_Engineering_Manager.pdf'
+
+const inputClasses =
+  'w-full px-4 py-3 rounded-lg border border-border bg-background/60 text-sm focus:outline-hidden focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-colors placeholder:text-muted-foreground/60'
 
 const Contact = () => {
-  // Form state
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -12,32 +30,15 @@ const Contact = () => {
     subject: '',
     budget: '',
     message: '',
-    attachment: null as File | null
+    attachment: null as File | null,
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  // Animation variants
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  }
-
-  const staggerContainer = {
-    initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
       await submitContact({
         name: formData.fullName,
@@ -65,383 +66,303 @@ const Contact = () => {
     }
   }
 
-  // Handle input change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  // Handle file upload
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null
-    setFormData(prev => ({ ...prev, attachment: file }))
+    setFormData((prev) => ({ ...prev, attachment: file }))
   }
 
-  // Contact information
   const contactInfo = {
-    email: "alfred.v.paul@gmail.com",
-    phone: "+971 56 131 1506",
-    location: "Dubai, UAE"
+    email: 'alfred.v.paul@gmail.com',
+    phone: '+971 56 131 1506',
+    location: 'Dubai, UAE',
   }
-
-  const socialLinks = [
-    { platform: "LinkedIn", url: "https://www.linkedin.com/in/alfred-paul-56438454", icon: Linkedin, color: "text-primary hover:text-primary/80" },
-    { platform: "GitHub", url: "https://github.com/alfredpaul", icon: Github, color: "text-foreground hover:text-primary" },
-    { platform: "Twitter", url: "https://twitter.com/alfredpaul", icon: Twitter, color: "text-muted-foreground hover:text-primary" }
-  ]
 
   const inquiryOptions = [
-    "Job Opportunity",
-    "Technical Collaboration",
-    "Consulting Inquiry",
-    "Speaking / Advisory",
-    "General Inquiry",
+    'Job Opportunity',
+    'Technical Collaboration',
+    'Consulting Inquiry',
+    'Speaking / Advisory',
+    'General Inquiry',
   ]
 
   return (
-    <section id="contact" className="py-20 lg:py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-b from-background to-background/95" />
-      
-      <div className="container-drake relative z-10">
-        {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-24"
-        >
-          <div className="mb-4">
-            <span className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground font-medium">
-              GET IN TOUCH
-            </span>
+    <SectionShell
+      index="11"
+      label="CONTACT"
+      title="Let's build AI-native engineering systems."
+      subtitle="Open to AI Engineering Manager, AI Transformation Lead, and AI Architect roles — or a conversation about building agentic platforms at scale."
+    >
+      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Left column — channels + positioning */}
+        <Reveal stagger={0.08} className="order-2 space-y-8 lg:order-1">
+          <div className="space-y-3">
+            {[
+              { icon: Mail, label: 'Email', value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+              { icon: Phone, label: 'Phone', value: contactInfo.phone, href: `tel:${contactInfo.phone.replace(/\s/g, '')}` },
+              { icon: MapPin, label: 'Location', value: contactInfo.location, href: undefined },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="glass-panel flex items-center gap-4 rounded-lg p-4 transition-colors hover:border-accent-cyan/40"
+              >
+                <span className="rounded-lg bg-accent-cyan/10 p-3">
+                  <item.icon className="size-5 text-accent-cyan" />
+                </span>
+                <span>
+                  <span className="block font-mono text-[10px] tracking-widest text-muted-foreground">
+                    {item.label.toUpperCase()}
+                  </span>
+                  <span className="text-sm text-foreground">{item.value}</span>
+                </span>
+              </a>
+            ))}
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Let's{' '}
-            <span className="text-gradient">Connect</span>
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Open to senior AI engineering &amp; engineering manager roles — or a conversation about building AI platforms at scale.
-          </p>
-        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left Column - Contact Info */}
-          <motion.div
-            {...fadeInUp}
-            viewport={{ once: true }}
-            className="order-2 lg:order-1"
-          >
-            {/* Contact Information */}
-            <div className="space-y-8 mb-12">
+          <div className="flex flex-wrap gap-3">
+            <GhostLink
+              href="https://www.linkedin.com/in/alfred-paul-56438454"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="size-4" /> LinkedIn
+            </GhostLink>
+            <GhostLink href="https://github.com/alfredpaul" target="_blank" rel="noopener noreferrer">
+              <Github className="size-4" /> GitHub
+            </GhostLink>
+            <GhostLink href={resumePdf} download="Alfred_Paul_Resume.pdf">
+              <FileDown className="size-4" /> Resume
+            </GhostLink>
+          </div>
+
+          <GlassPanel glow="cyan" className="p-6">
+            <h3 className="font-mono text-xs tracking-[0.2em] text-accent-cyan">
+              WHAT I'M LOOKING FOR
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {[
+                ['Role', 'AI Engineering Manager, AI Transformation Lead, or AI Architect'],
+                ['Location', 'Remote-first or hybrid (Dubai-based, open to relocation)'],
+                ['Domain', 'AI-first products, enterprise AI platforms, developer tooling'],
+                ['Team', 'High-ownership culture, shipping AI to production (not just R&D)'],
+              ].map(([label, value]) => (
+                <li key={label} className="flex items-start gap-3">
+                  <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent-cyan" />
+                  <span className="text-sm text-muted-foreground">
+                    <strong className="text-foreground">{label}:</strong> {value}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 border-t border-border pt-4 text-xs text-muted-foreground">
+              12 years at one company means 12 years of compounding enterprise trust — ask my
+              references.
+            </p>
+          </GlassPanel>
+        </Reveal>
+
+        {/* Right column — form */}
+        <Reveal className="order-1 lg:order-2">
+          <GlassPanel className="p-6 sm:p-8">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 rounded-lg border border-status-ok/30 bg-status-ok/10 p-4"
+                >
+                  <CheckCircle className="size-5 text-status-ok" />
+                  <span className="text-sm text-status-ok">
+                    Message sent successfully! I'll get back to you soon.
+                  </span>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 rounded-lg border border-destructive/30 bg-destructive/10 p-4"
+                >
+                  <AlertCircle className="size-5 text-destructive" />
+                  <span className="text-sm text-destructive">
+                    Something went wrong. Please try again.
+                  </span>
+                </motion.div>
+              )}
+
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                  Get In Touch
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  I'm always interested in new opportunities and exciting projects. Whether you need 
-                  AI integration, full-stack development, or technical leadership, let's start a conversation.
-                </p>
+                <label
+                  htmlFor="contact-name"
+                  className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                >
+                  FULL NAME *
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required
+                  className={inputClasses}
+                  placeholder="Your full name"
+                />
               </div>
 
-              {/* Contact Details */}
-              <div className="space-y-6">
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors duration-300"
-                >
-                  <div className="p-3 bg-primary/10 rounded-xl">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Email</div>
-                    <div className="text-muted-foreground">{contactInfo.email}</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors duration-300"
-                >
-                  <div className="p-3 bg-primary/10 rounded-xl">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Phone</div>
-                    <div className="text-muted-foreground">{contactInfo.phone}</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors duration-300"
-                >
-                  <div className="p-3 bg-primary/10 rounded-xl">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Location</div>
-                    <div className="text-muted-foreground">{contactInfo.location}</div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Social Links */}
-              <div>
-                <h4 className="font-semibold mb-4">Follow Me</h4>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => {
-                    const IconComponent = social.icon
-                    return (
-                      <motion.a
-                        key={social.platform}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className={`p-3 bg-muted hover:bg-primary/10 rounded-xl transition-colors duration-300 ${social.color}`}
-                      >
-                        <IconComponent className="w-6 h-6" />
-                      </motion.a>
-                    )
-                  })}
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="contact-email"
+                    className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                  >
+                    EMAIL *
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className={inputClasses}
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="contact-phone"
+                    className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                  >
+                    PHONE
+                  </label>
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className={inputClasses}
+                    placeholder="+971 ..."
+                  />
                 </div>
               </div>
-            </div>
 
-            {/* What I'm Looking For */}
-            <div className="card-drake p-6">
-              <h4 className="font-bold text-lg mb-4">What I'm Looking For</h4>
-              <ul className="space-y-3 mb-5">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
-                  <span className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Role:</strong> Engineering Manager, AI Platform Lead, or Principal AI Engineer
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
-                  <span className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Location:</strong> Remote-first or hybrid (Dubai-based, open to relocation)
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
-                  <span className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Domain:</strong> AI-first products, enterprise AI platforms, developer tooling
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
-                  <span className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">Team:</strong> High-ownership culture, shipping AI to production (not just R&amp;D)
-                  </span>
-                </li>
-              </ul>
-              <p className="text-xs text-muted-foreground border-t border-border pt-4">
-                12 years at one company means 12 years of compounding enterprise trust — ask my references.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Contact Form */}
-          <motion.div
-            {...fadeInUp}
-            viewport={{ once: true }}
-            className="order-1 lg:order-2"
-          >
-            <div className="card-drake p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Success/Error Messages */}
-                {submitStatus === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center gap-3"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-green-700 dark:text-green-300 text-sm">
-                      Message sent successfully! I'll get back to you soon.
-                    </span>
-                  </motion.div>
-                )}
-
-                {submitStatus === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-3"
-                  >
-                    <AlertCircle className="w-5 h-5 text-red-600" />
-                    <span className="text-red-700 dark:text-red-300 text-sm">
-                      Something went wrong. Please try again.
-                    </span>
-                  </motion.div>
-                )}
-
-                {/* Form Fields */}
-                <motion.div
-                  variants={staggerContainer}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  className="space-y-6"
+              <div>
+                <label
+                  htmlFor="contact-subject"
+                  className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
                 >
-                  {/* Full Name */}
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      FULL NAME *
-                    </label>
-                    <input
-                      type="text"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </motion.div>
+                  SUBJECT *
+                </label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  className={inputClasses}
+                  placeholder="Job opportunity, collaboration, consulting…"
+                />
+              </div>
 
-                  {/* Email & Phone */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <motion.div variants={fadeInUp}>
-                      <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                        EMAIL *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                        placeholder="your@email.com"
-                      />
-                    </motion.div>
+              <div>
+                <label
+                  htmlFor="contact-inquiry"
+                  className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                >
+                  INQUIRY TYPE
+                </label>
+                <select
+                  id="contact-inquiry"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleInputChange}
+                  className={inputClasses}
+                >
+                  <option value="">Select inquiry type</option>
+                  {inquiryOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                    <motion.div variants={fadeInUp}>
-                      <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                        PHONE
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                        placeholder="+1 (555) 123-4567"
-                      />
-                    </motion.div>
-                  </div>
+              <div>
+                <label
+                  htmlFor="contact-message"
+                  className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                >
+                  MESSAGE *
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className={`${inputClasses} resize-none`}
+                  placeholder="Tell me about your team, role, and what you're building…"
+                />
+              </div>
 
-                  {/* Subject */}
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      SUBJECT *
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                      placeholder="Job opportunity, collaboration, consulting, etc."
-                    />
-                  </motion.div>
+              <div>
+                <label
+                  htmlFor="attachment"
+                  className="mb-2 block font-mono text-[10px] tracking-widest text-muted-foreground"
+                >
+                  ATTACHMENT
+                </label>
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  className="sr-only"
+                  id="attachment"
+                  accept=".pdf,.doc,.docx,.txt"
+                />
+                <label
+                  htmlFor="attachment"
+                  className="flex w-full cursor-pointer items-center gap-3 rounded-lg border border-border bg-background/60 px-4 py-3 transition-colors hover:border-accent-cyan/40"
+                >
+                  <Paperclip className="size-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    {formData.attachment ? formData.attachment.name : 'Choose file (PDF, DOC, TXT)'}
+                  </span>
+                </label>
+              </div>
 
-                  {/* Inquiry Type */}
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      INQUIRY TYPE
-                    </label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    >
-                      <option value="">Select inquiry type</option>
-                      {inquiryOptions.map((option) => (
-                        <option key={option} value={option}>{option}</option>
-                      ))}
-                    </select>
-                  </motion.div>
-
-                  {/* Message */}
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      MESSAGE *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
-                      placeholder="Tell me about your project, timeline, and requirements..."
-                    />
-                  </motion.div>
-
-                  {/* File Attachment */}
-                  <motion.div variants={fadeInUp}>
-                    <label className="block text-sm font-medium mb-2 uppercase tracking-wider">
-                      ADD AN ATTACHMENT
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        onChange={handleFileChange}
-                        className="sr-only"
-                        id="attachment"
-                        accept=".pdf,.doc,.docx,.txt"
-                      />
-                      <label
-                        htmlFor="attachment"
-                        className="flex items-center gap-3 w-full px-4 py-3 rounded-lg border border-border bg-background hover:bg-muted/50 transition-colors cursor-pointer"
-                      >
-                        <Paperclip className="w-5 h-5 text-muted-foreground" />
-                        <span className="text-muted-foreground">
-                          {formData.attachment ? formData.attachment.name : 'Choose file (PDF, DOC, TXT)'}
-                        </span>
-                      </label>
-                    </div>
-                  </motion.div>
-
-                  {/* Submit Button */}
-                  <motion.div variants={fadeInUp} className="pt-4">
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                      className="w-full btn-drake text-lg py-4 flex items-center justify-center gap-3 relative group disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5" />
-                          SEND MESSAGE
-                        </>
-                      )}
-                      <div className="absolute inset-0 bg-primary rounded-md opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                    </motion.button>
-                  </motion.div>
-                </motion.div>
-              </form>
-            </div>
-          </motion.div>
-        </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex w-full items-center justify-center gap-2 rounded-md bg-accent-cyan py-3.5 text-sm font-semibold text-background transition-all duration-300 hover:shadow-[0_0_24px_hsl(var(--accent-cyan)/0.45)] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send className="size-4" />
+                    SEND MESSAGE
+                  </>
+                )}
+              </button>
+            </form>
+          </GlassPanel>
+        </Reveal>
       </div>
-    </section>
+    </SectionShell>
   )
 }
 

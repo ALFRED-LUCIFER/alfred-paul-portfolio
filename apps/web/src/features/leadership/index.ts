@@ -1,1 +1,1 @@
-export { default as LeadershipPhilosophy } from './components/LeadershipPhilosophy'
+export { Leadership } from './components/Leadership'

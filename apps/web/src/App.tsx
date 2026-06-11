@@ -1,17 +1,17 @@
-import './App.css'
-
 import { Navigation, Footer } from './features/navigation'
 import { Hero } from './features/hero'
-import { About } from './features/about'
-import { Resume } from './features/resume'
-import { Services } from './features/services'
+import { Identity } from './features/identity'
+import { Systems } from './features/systems'
+import { ArchitectureLayers } from './features/architecture'
+import { AgenticSdlc } from './features/sdlc'
+import { Leadership } from './features/leadership'
 import { Skills } from './features/skills'
-import { Portfolio } from './features/portfolio'
+import { CaseStudies } from './features/case-studies'
+import { Certifications } from './features/certifications'
+import { Signals } from './features/signals'
 import { Testimonials } from './features/testimonials'
 import { Contact } from './features/contact'
-import { Insights } from './features/insights'
-import { LeadershipPhilosophy } from './features/leadership'
-import { AIRoadmap } from './features/roadmap'
+import { GridBackdrop } from './shared/ui/GridBackdrop'
 import { ScrollProgressBar } from './shared/ui/ScrollProgressBar'
 import { BackToTop } from './shared/ui/BackToTop'
 import { LoadingScreen } from './shared/ui/LoadingScreen'
@@ -34,51 +34,63 @@ function App() {
       <CommandPalette isOpen={isOpen} onClose={close} />
       <DeveloperMode isOpen={devMode} onClose={closeDev} />
 
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="relative min-h-screen bg-background text-foreground">
+        <GridBackdrop />
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-accent-cyan focus:px-4 focus:py-2 focus:text-background"
+        >
+          Skip to content
+        </a>
         <Navigation />
 
-        <main>
-          <section id="home" className="section-padding">
+        <main className="relative z-10">
+          <section id="home" aria-label="Introduction">
             <Hero />
           </section>
-
-          <section id="about" className="section-padding bg-muted/20">
-            <About />
+          <section id="identity" className="section-padding" aria-label="Identity">
+            <Identity />
           </section>
-
-          <section id="resume" className="section-padding">
-            <Resume />
+          <section
+            id="systems"
+            className="section-padding bg-surface/60"
+            aria-label="Featured AI systems"
+          >
+            <Systems />
           </section>
-
-          <section id="services" className="section-padding bg-muted/20">
-            <Services />
+          <section id="architecture" className="section-padding" aria-label="Architecture thinking">
+            <ArchitectureLayers />
           </section>
-
-          <section id="skills" className="section-padding">
+          <section id="sdlc" className="section-padding bg-surface/60" aria-label="Agentic SDLC">
+            <AgenticSdlc />
+          </section>
+          <section id="leadership" className="section-padding" aria-label="Engineering leadership">
+            <Leadership />
+          </section>
+          <section id="skills" className="section-padding bg-surface/60" aria-label="Skills">
             <Skills />
           </section>
-
-          <section id="portfolio" className="section-padding bg-muted/20">
-            <Portfolio />
+          <section id="case-studies" className="section-padding" aria-label="Case studies">
+            <CaseStudies />
           </section>
-
-          <section id="leadership" className="section-padding">
-            <LeadershipPhilosophy />
+          <section
+            id="certifications"
+            className="section-padding bg-surface/60"
+            aria-label="Certifications"
+          >
+            <Certifications />
           </section>
-
-          <section id="ai-roadmap" className="section-padding">
-            <AIRoadmap />
+          <section id="signals" className="section-padding" aria-label="Writing and posts">
+            <Signals />
           </section>
-
-          <section id="insights" className="section-padding bg-muted/20">
-            <Insights />
-          </section>
-
-          <section id="testimonials" className="section-padding">
+          <section
+            id="testimonials"
+            className="section-padding bg-surface/60"
+            aria-label="Testimonials"
+          >
             <Testimonials />
           </section>
-
-          <section id="contact" className="section-padding bg-muted/20">
+          <section id="contact" className="section-padding" aria-label="Contact">
             <Contact />
           </section>
         </main>

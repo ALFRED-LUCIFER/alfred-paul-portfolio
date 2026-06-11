@@ -1,13 +1,24 @@
 import { useState, useEffect } from 'react'
 
-const SECTION_IDS = ['home', 'about', 'resume', 'services', 'skills', 'portfolio', 'testimonials', 'contact']
+const SECTION_IDS = [
+  'home',
+  'identity',
+  'systems',
+  'architecture',
+  'sdlc',
+  'leadership',
+  'skills',
+  'case-studies',
+  'certifications',
+  'signals',
+  'testimonials',
+  'contact',
+]
 
 export function useActiveSection(): string {
   const [active, setActive] = useState('home')
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
-
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -26,9 +37,7 @@ export function useActiveSection(): string {
       if (el) observer.observe(el)
     })
 
-    observers.push(observer)
-
-    return () => observers.forEach((o) => o.disconnect())
+    return () => observer.disconnect()
   }, [])
 
   return active

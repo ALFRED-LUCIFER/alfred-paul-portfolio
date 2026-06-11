@@ -16,22 +16,30 @@ export function LoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[200] bg-background flex flex-col items-center justify-center gap-4"
+          className="fixed inset-0 z-[200] bg-background flex flex-col items-center justify-center gap-3"
         >
-          <motion.img
-            src="/images/apex-logo-white.png"
-            alt="Alfred Paul"
-            className="w-20 h-20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' as const }}
-          />
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="font-mono text-sm text-accent-cyan"
+          >
+            AP://command-center
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="font-mono text-xs text-muted-foreground"
+          >
+            initializing systems…
+          </motion.p>
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: 120 }}
+            animate={{ width: 160 }}
             transition={{ duration: 1.2, delay: 0.4, ease: 'easeInOut' as const }}
-            className="h-[2px] bg-primary rounded-full"
-            style={{ boxShadow: '0 0 8px rgba(40, 233, 140, 0.6)' }}
+            className="h-[2px] rounded-full bg-gradient-to-r from-accent-cyan via-accent-indigo to-accent-violet"
+            style={{ boxShadow: '0 0 8px hsl(var(--accent-cyan) / 0.6)' }}
           />
         </motion.div>
       )}
