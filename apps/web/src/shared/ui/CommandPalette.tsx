@@ -17,12 +17,13 @@ import {
   Download,
   X,
   Search,
+  type LucideIcon,
 } from 'lucide-react'
 
 interface Command {
   id: string
   label: string
-  icon: React.ElementType
+  icon: LucideIcon
   action: () => void
   shortcut?: string
 }

@@ -28,27 +28,36 @@ There are currently no unit or E2E tests implemented despite test tooling being 
 ## Architecture
 
 This is a **pnpm + Turborepo monorepo** with two apps:
-- `apps/web` — the live portfolio site (React 19, Vite, Tailwind CSS)
+- `apps/web` — the live portfolio site (React 19, Vite, Tailwind CSS 4, Motion, GSAP, React Three Fiber)
 - `apps/api` — a scaffolded NestJS backend (not yet implemented or integrated)
 
-### Web App Layout
+### Web App Layout — "AI Command Center"
 
-`App.tsx` is a flat, section-based single-page layout. There is **no client-side router** — navigation uses anchor links (`#home`, `#about`, etc.) with CSS `scroll-behavior: smooth`. Each section is a standalone component rendered in order:
+`App.tsx` is a flat, section-based single-page layout. There is **no client-side router** — navigation uses anchor links with CSS `scroll-behavior: smooth`. Sections render in order:
 
-`Navigation → Hero → About → Resume → Services → Skills → Portfolio → Testimonials → Contact → Footer`
+`Navigation → Hero → Identity → Systems → Architecture → SDLC → Leadership → Skills → CaseStudies → Certifications → Signals → Testimonials → Contact → Footer`
 
-All portfolio content (projects, testimonials, experience) is hardcoded inside the components themselves. The markdown files at the repo root (`portfolio-data.md`, `testimonialdata.md`) are reference documents, not imported data sources.
+Section anchor ids: `home`, `identity`, `systems`, `architecture`, `sdlc`, `leadership`, `skills`, `case-studies`, `certifications`, `signals`, `testimonials`, `contact`. The nav, command palette (⌘K), and `useActiveSection` all share this id list — keep them in sync.
+
+**All copy/content lives in `features/*/data/*.data.ts` files** — never hardcode content inside components. The markdown files at the repo root (`portfolio-data.md`, `testimonialdata.md`) are reference documents, not imported data sources.
+
+Heavy visuals are lazy-loaded: the hero's R3F `OrchestrationGraph` (with a static SVG `GraphFallback` for mobile/reduced-motion/WebGL failure) and the `CaseStudyModal` (mermaid + syntax highlighting, loads on first open).
+
+### Design System
+
+Shared primitives live in `src/shared/ui/`: `SectionShell` (numbered mono section header + scroll reveal), `GlassPanel`, `StatusBadge`, `MonoChip`, `GlowLink/GhostLink/GlowButton/GhostButton`, `GridBackdrop` (single fixed CSS grid), `Reveal/RevealItem` (Motion `whileInView` wrappers honoring `useReducedMotion`).
 
 ### Styling System
 
-Colors are defined as HSL CSS variables in `apps/web/src/index.css` at `@layer base` and consumed by Tailwind via `hsl(var(--name))` in `tailwind.config.js`. **Never use hardcoded hex/rgb values** — always reference the CSS variables or their Tailwind tokens.
+The site is **dark-only** (no theme toggle). Colors are defined as HSL CSS variables in `apps/web/src/index.css` (`@layer base`) and exposed to Tailwind via the `@theme` block in the same file (Tailwind 4 CSS-first config — there is no `tailwind.config.js`). **Never use hardcoded hex/rgb values in components** — always reference the tokens. Exception: three.js/SVG/mermaid color inputs mirror the tokens as hex (`ACCENT_HEX` in `features/hero/data/graph.data.ts`).
 
-Brand-specific colors are under the `drake.*` token namespace:
-- `drake-gold`, `drake-orange`, `drake-blue`, `drake-dark-blue`, `drake-red`
-- Primary green: `--primary` (Drake Signature Green `#28e98c`)
-- Background: `--background` (Rich Dark Gray `#2a2f3a`)
+Token palette:
+- Backgrounds: `background` #07090d (page), `surface` #0a0e14 (alternating sections), `panel` #0c1220 (cards)
+- Accents: `accent-cyan` #22d3ee (brand/primary), `accent-indigo` #818cf8 (AI/agents), `accent-violet` #a855f7 (SDLC)
+- Status (semantic only — never decorative): `status-ok` #34d399, `status-warn` #fbbf24
+- `primary` is aliased to `accent-cyan`
 
-Fonts: `font-sans` → Inter, `font-mono` → JetBrains Mono (loaded via CDN in `index.html`).
+Fonts: `font-sans` → Inter Variable, `font-mono` → JetBrains Mono Variable — self-hosted via `@fontsource-variable/*` imports in `index.css` (no CDN). Mono is a core identity element: section numbers (`04 /`), labels, badges, chips.
 
 ### Deployment
 
