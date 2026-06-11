@@ -5,13 +5,16 @@ const Footer = () => {
   return (
     <footer className="relative z-10 border-t border-border">
       <div className="container-grid flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-        <div className="flex flex-col gap-1">
-          <p className="font-mono text-[11px] text-muted-foreground">
-            alfred@paul:~$ <span className="text-accent-cyan">uptime</span> — building since 2013
-          </p>
-          <p className="text-xs text-muted-foreground/60">
-            © {new Date().getFullYear()} Alfred Paul. All rights reserved.
-          </p>
+        <div className="flex items-center gap-4">
+          <img src="/images/apex-logo-white.png" alt="Apex Forge" className="h-7 w-auto opacity-70" />
+          <div className="flex flex-col gap-1">
+            <p className="font-mono text-[11px] text-muted-foreground">
+              alfred@paul:~$ <span className="text-accent-cyan">uptime</span> — building since 2013
+            </p>
+            <p className="text-xs text-muted-foreground/60">
+              © {new Date().getFullYear()} Alfred Paul. All rights reserved.
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-4">

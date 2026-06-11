@@ -36,8 +36,15 @@ const Navigation = () => {
         aria-label="Main"
         className="glass-panel mx-auto mt-3 flex max-w-5xl items-center justify-between rounded-lg px-4 py-2.5 sm:px-6"
       >
-        <a href="#home" className="font-mono text-sm font-bold tracking-tight">
-          AP<span className="text-accent-cyan">://</span>
+        <a href="#home" className="flex items-center gap-2.5" aria-label="Alfred Paul — home">
+          <img
+            src="/images/apex-logo-white.png"
+            alt=""
+            className="h-5 w-auto transition-[filter] duration-300 hover:drop-shadow-[0_0_8px_hsl(var(--accent-cyan)/0.6)]"
+          />
+          <span className="font-mono text-sm font-bold tracking-tight">
+            AP<span className="text-accent-cyan">://</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
