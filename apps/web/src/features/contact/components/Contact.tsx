@@ -134,7 +134,7 @@ const Contact = () => {
             >
               <Linkedin className="size-4" /> LinkedIn
             </GhostLink>
-            <GhostLink href="https://github.com/alfredpaul" target="_blank" rel="noopener noreferrer">
+            <GhostLink href="https://github.com/ALFRED-LUCIFER" target="_blank" rel="noopener noreferrer">
               <Github className="size-4" /> GitHub
             </GhostLink>
             <GhostLink href={resumePdf} download="Alfred_Paul_Resume.pdf">
@@ -149,7 +149,7 @@ const Contact = () => {
             <ul className="mt-4 space-y-3">
               {[
                 ['Role', 'AI Engineering Manager, AI Transformation Lead, or AI Architect'],
-                ['Location', 'Remote-first or hybrid (Dubai-based, open to relocation)'],
+                ['Location', 'Dubai-based with transferable UAE residence visa — remote, hybrid, or relocation'],
                 ['Domain', 'AI-first products, enterprise AI platforms, developer tooling'],
                 ['Team', 'High-ownership culture, shipping AI to production (not just R&D)'],
               ].map(([label, value]) => (

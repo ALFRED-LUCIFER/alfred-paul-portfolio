@@ -17,23 +17,23 @@ export const ROLES: Role[] = [
   },
   {
     icon: Code2,
-    title: 'Full-Stack Developer',
+    title: 'Full-Stack Engineer',
     description:
-      'Hands-on across React, TypeScript, .NET, and cloud — shipping production systems, not slideware.',
+      'Hands-on across React, TypeScript, .NET, Node.js, and Python — shipping production systems, not slideware.',
     accent: 'indigo',
   },
   {
     icon: DraftingCompass,
     title: 'AI Architect',
     description:
-      'Designing agentic systems, MCP integrations, and knowledge graphs with C4 thinking and ADR discipline.',
+      'Designing agentic AI systems, LLM integrations, MCP servers, and knowledge graphs with C4 thinking and ADR discipline.',
     accent: 'violet',
   },
   {
     icon: Users,
-    title: 'Engineering Manager Track',
+    title: 'Engineering Manager',
     description:
-      'A decade of leading global teams — mentoring, delivery ownership, and engineering culture that scales.',
+      'Leading a distributed team of 20 engineers across Dubai and Austria — hiring, mentoring, and delivery ownership.',
     accent: 'cyan',
   },
   {

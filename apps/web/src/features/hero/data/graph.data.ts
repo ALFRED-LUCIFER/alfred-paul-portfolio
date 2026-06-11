@@ -16,6 +16,7 @@ export const GRAPH_NODES: GraphNode[] = [
   { id: 'tests', label: 'Tests', position: [1.8, -1.7, -0.4], accent: 'violet' },
   { id: 'governance', label: 'Governance', position: [0.2, 2.3, 0.2], accent: 'ok' },
   { id: 'deployment', label: 'Deployment', position: [0, -2.5, -0.2], accent: 'ok' },
+  { id: 'llm', label: 'LLM', position: [1.2, 0.8, 0.6], accent: 'indigo' },
 ]
 
 /** Edges as [fromId, toId] — hub-and-spoke from MCP plus a few cross-links */
@@ -28,6 +29,8 @@ export const GRAPH_EDGES: Array<[string, string]> = [
   ['mcp', 'tests'],
   ['mcp', 'governance'],
   ['mcp', 'deployment'],
+  ['mcp', 'llm'],
+  ['llm', 'copilot'],
   ['developer', 'copilot'],
   ['copilot', 'tests'],
   ['governance', 'deployment'],

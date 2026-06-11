@@ -35,7 +35,7 @@ const Footer = () => {
             <Linkedin className="size-4" />
           </a>
           <a
-            href="https://github.com/alfredpaul"
+            href="https://github.com/ALFRED-LUCIFER"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"

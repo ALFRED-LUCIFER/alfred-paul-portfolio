@@ -26,7 +26,7 @@ export function Systems() {
       index="02"
       label="FEATURED AI SYSTEMS"
       title="Production systems, not prototypes."
-      subtitle="Agentic platforms, MCP integrations, and full-stack products — each one a module in a larger engineering operating system."
+      subtitle="Agentic AI platforms, LLM and MCP integrations, and full-stack products — each one a module in a larger engineering operating system."
       accent="indigo"
     >
       <Reveal stagger={0.06} className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

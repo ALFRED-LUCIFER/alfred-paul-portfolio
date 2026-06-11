@@ -12,7 +12,7 @@ export function GraphFallback() {
       viewBox="0 0 400 400"
       className="h-full w-full"
       role="img"
-      aria-label="AI orchestration network connecting Developer, Copilot, MCP, Jira, Confluence, Architecture, Tests, Governance and Deployment"
+      aria-label="AI orchestration network connecting Developer, Copilot, LLM, MCP, Jira, Confluence, Architecture, Tests, Governance and Deployment"
     >
       {GRAPH_EDGES.map(([from, to]) => {
         const a = project(byId.get(from)!.position)

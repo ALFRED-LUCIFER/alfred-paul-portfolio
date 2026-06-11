@@ -47,7 +47,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-panel/60 px-4 py-1.5 backdrop-blur">
             <StatusBadge status="online" />
             <span className="font-mono text-[11px] tracking-wider text-muted-foreground">
-              AI TRANSFORMATION LEAD · FULL STACK · AGENTIC SDLC
+              AI ENGINEERING MANAGER · TRANSFORMATION LEAD · AGENTIC SDLC
             </span>
           </div>
 
@@ -57,8 +57,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Full-stack developer and AI architecture leader focused on agentic SDLC, developer
-            productivity, governance, MCP integrations, and enterprise AI adoption.
+            12+ years of enterprise engineering, leading a 20-engineer team across Dubai and
+            Austria — building agentic AI systems, LLM platforms, Model Context Protocol (MCP)
+            integrations, and governed enterprise AI adoption.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
       'Satisfaction scoring system enforces company standards',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'internal',
     architectureHighlight:
@@ -257,7 +257,7 @@ async function fullStackFlow(plan: Plan) {
       'Copilot Studio integration for enterprise-grade UX',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'internal',
     architectureHighlight:
@@ -420,11 +420,11 @@ async function fullStackFlow(plan: Plan) {
   },
   {
     id: 1,
-    title: 'Enterprise RAG Chatbot with Quin',
+    title: 'Enterprise RAG Knowledge Chatbot',
     description:
-      'Built an AI-powered chatbot using Retrieval-Augmented Generation pipelines for internal documentation queries with semantic search capabilities.',
+      'Built an LLM-powered chatbot using Retrieval-Augmented Generation pipelines (LangChain + OpenAI) for internal documentation queries with semantic search across 800+ manuals.',
     category: 'AI Development',
-    technologies: ['Python', 'LangChain', 'RAG', 'Quin', 'OpenAI'],
+    technologies: ['Python', 'LangChain', 'RAG', 'OpenAI', 'Vector Search'],
     features: [
       'Semantic search across technical manuals',
       'Context-aware responses',
@@ -432,7 +432,7 @@ async function fullStackFlow(plan: Plan) {
       'Multi-language support',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'internal',
     architectureHighlight:
@@ -442,7 +442,7 @@ async function fullStackFlow(plan: Plan) {
       problem:
         'Engineers spent 2–3 hours daily searching across 800+ technical manuals and PDFs in German and English, causing delays in customer support and project delivery.',
       solution:
-        'Built a RAG pipeline using LangChain and the Quin internal LLM. Documents are chunked, embedded with OpenAI embeddings, and stored in a vector database. The chatbot retrieves semantically similar chunks and generates grounded answers with citations.',
+        'Built a RAG pipeline using LangChain and OpenAI. Documents are chunked, embedded with OpenAI embeddings, and stored in a vector database. The chatbot retrieves semantically similar chunks and generates grounded answers with citations.',
       impact:
         'Documentation lookup time dropped from ~2 hours to under 2 minutes. Engineers now find accurate cross-lingual answers instantly, directly improving customer SLA adherence.',
       metrics: [
@@ -467,7 +467,7 @@ async function fullStackFlow(plan: Plan) {
       '30% faster deployment cycles',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'prod',
     architectureHighlight: 'Strangler-fig migration from a 15-year monolith to Azure microservices',
@@ -501,7 +501,7 @@ async function fullStackFlow(plan: Plan) {
       'Comprehensive monitoring',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: false,
     status: 'prod',
     architectureHighlight: 'Terraform IaC with blue-green deploys on AKS and automated rollback',
@@ -535,7 +535,7 @@ async function fullStackFlow(plan: Plan) {
       'Team Polls for sprint goals, retro topics, and office votes',
     ],
     liveUrl: 'https://velocityvote.app',
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'prod',
     architectureHighlight: 'Real-time vote sync via Pusher Channels — stateless rooms, no accounts',
@@ -603,7 +603,7 @@ async function fullStackFlow(plan: Plan) {
       'Reduced testing cycles',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: false,
     status: 'internal',
     architectureHighlight: 'Shared prompt library + Cursor rule sets aligned to .NET/React standards',
@@ -637,7 +637,7 @@ async function fullStackFlow(plan: Plan) {
       'Multi-timezone support',
     ],
     liveUrl: null,
-    githubUrl: 'https://github.com/alfredpaul',
+    githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: false,
     status: 'internal',
     architectureHighlight: 'React + Node.js with a Socket.io real-time core',

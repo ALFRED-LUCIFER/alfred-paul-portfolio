@@ -12,22 +12,22 @@ export const CAREER: CareerEntry[] = [
   {
     period: 'Oct 2021 - Present',
     title: 'Team Leader – Software Development & AI Initiatives',
-    company: 'LiSEC Austria GmbH',
+    company: 'LiSEC Automation Middle East FZ-LLC',
     location: 'Dubai, UAE',
     type: 'Full-time · 4 yrs 7 mos',
     highlights: [
-      'Delivered AI-powered chatbot using Qwen + RAG for dynamic Q&A over internal docs',
-      'Introduced Copilot + Cursor.ai workflows — boosted dev productivity by 40%',
-      'Spearheaded DevOps pipelines; reduced release cycle by 60%',
-      'Led Agile delivery with global teams across Dubai and Austria',
-      'Mentored developers in AI-assisted development & modern full-stack design patterns',
+      'Led and mentored a distributed team of 20 engineers across Dubai and Austria',
+      'Delivered AI-powered RAG chatbot (LangChain + OpenAI) for Q&A over 800+ internal docs',
+      'Introduced and governed AI-assisted development (Copilot, Cursor.ai, Claude Agent SDK) — boosted dev productivity by 40%',
+      'Spearheaded CI/CD pipelines with GitHub Actions and Harness; reduced release cycle by 60%',
+      'Designed scalable backends in .NET Core, Python, and NestJS on Azure and AWS',
     ],
-    skills: ['Python', 'Qwen', 'RAG', '.NET Core', 'React', 'Azure', 'Docker', 'Copilot', 'Cursor.ai'],
+    skills: ['Python', 'LangChain', 'RAG', '.NET Core', 'NestJS', 'React', 'Azure', 'AWS', 'Kubernetes', 'Copilot', 'Claude Agent SDK'],
   },
   {
     period: 'Oct 2020 - Oct 2021',
-    title: 'Senior Software Developer – .NET & Agile Product Delivery',
-    company: 'LiSEC Austria GmbH',
+    title: 'Senior Software Developer – Full-Stack (.NET & Cloud)',
+    company: 'LiSEC Automation Middle East FZ-LLC',
     location: 'Dubai, UAE',
     type: 'Full-time · 1 yr 1 mo',
     highlights: [
@@ -40,8 +40,8 @@ export const CAREER: CareerEntry[] = [
   },
   {
     period: 'Sep 2013 - Oct 2020',
-    title: 'Software Engineer',
-    company: 'LiSEC Austria GmbH',
+    title: 'Full-Stack Software Developer',
+    company: 'LiSEC Automation Middle East FZ-LLC',
     location: 'Dubai, UAE',
     type: 'Full-time · 7 yrs 2 mos',
     highlights: [
@@ -63,9 +63,9 @@ export interface EducationEntry {
 
 export const EDUCATION: EducationEntry[] = [
   {
-    period: '2008 - 2012',
+    period: '2004 - 2008',
     degree: 'Bachelor of Engineering – Computer Science',
-    institution: 'Oriental Engineering College',
-    location: 'India',
+    institution: 'RGPV Technical University',
+    location: 'Bhopal, India',
   },
 ]

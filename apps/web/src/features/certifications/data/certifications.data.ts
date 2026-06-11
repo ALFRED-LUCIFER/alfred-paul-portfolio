@@ -23,7 +23,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Microsoft Certified: AI Transformation Leader',
     issuer: 'Microsoft',
-    year: '2024',
+    year: '2026',
     description: 'Enterprise AI adoption, transformation strategy, and responsible AI practices',
     badge: '/images/ai-transformation-leader.png',
     verifyUrl:
