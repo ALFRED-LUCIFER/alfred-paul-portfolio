@@ -30,11 +30,27 @@ The 2026 resume is a genuinely strong document now. What remains below.
 | Dead canonical/OG/JSON-LD domain (`alfred-paul.vercel.app` → 404) replaced with live `alfred-paul-portfolio-web.vercel.app`; OG/Twitter images made absolute URLs (required for link previews) | `apps/web/index.html` |
 | **`awesome-skills-copilot` added as a featured System** — "Open-Source Agent Harness" card with real repo link, 41 agents / 56+23 skills+prompts / 10 hooks / MIT metrics, full case study. Replaced the link-less internal "Memory Contract" card in the featured grid (still in data, just not featured) | `systems/data/projects.data.ts` |
 | GitHub profile README drafted and ready to paste — includes bio suggestion, featured-repo table, pin strategy | `GITHUB_PROFILE_README_DRAFT.md` (repo root) |
+| UAE-market SEO: keywords now include Sovereign AI, On-Prem AI, Data Residency, UAE AI Strategy 2031, AI Platform Engineer, GCC; JSON-LD `knowsAbout` extended; AZ-900 + PCEP added to JSON-LD credentials | `apps/web/index.html` |
+| Portfolio repo GitHub metadata set: description, homepage (live URL), topics (`agentic-ai`, `react`, `typescript`, `threejs`, `tailwindcss`, `portfolio`) | GitHub via `gh repo edit` |
+| Verified site project metrics already match the 2026 resume (MCP: 60% L1 deflection / 100% on-prem; RAG: 800+ docs / 2 languages) — no drift | `systems/data/projects.data.ts` |
 
 ### 🔴 Pending — needs YOU (I cannot do these from the codebase)
 
 1. **Resume PDF email is still `alfred.paul@example.com`.** Open the source document, change to `alfred.v.paul@gmail.com`, re-export to `apps/web/src/assets/Alfred_Paul_2026.pdf` (same filename — the site now imports it). **While in there, add the `awesome-skills-copilot` bullet — suggested text below.**
-2. **Publish the GitHub profile README**: create public repo `ALFRED-LUCIFER/ALFRED-LUCIFER`, paste the draft, set the bio, pin the 4 repos. ~15 minutes. Seriously consider renaming the account (GitHub auto-redirects old URLs).
+2. **Publish the GitHub profile README** (~15 min; my permission scope blocked writes outside this repo — run these yourself):
+   ```bash
+   # Profile README (run from any temp folder)
+   gh repo create ALFRED-LUCIFER/ALFRED-LUCIFER --public --clone
+   # copy the body of GITHUB_PROFILE_README_DRAFT.md (below the divider) into README.md, then:
+   cd ALFRED-LUCIFER && git add . && git commit -m "profile readme" && git push
+
+   # Description + topics for the flagship repo
+   gh repo edit ALFRED-LUCIFER/awesome-skills-copilot \
+     --description "41 agents, 56 skills, 10 hooks, 4 plugins & 23 prompts for GitHub Copilot and Claude Code — production-ready agent harness patterns against context collapse and self-evaluation blindness. MIT." \
+     --add-topic agentic-ai --add-topic ai-agents --add-topic mcp --add-topic claude \
+     --add-topic claude-code --add-topic github-copilot --add-topic developer-tools --add-topic prompt-engineering
+   ```
+   Then set the profile bio and pin the 4 repos in the GitHub UI. Seriously consider renaming the account (GitHub auto-redirects old URLs).
 3. **Real LinkedIn post URLs for the Signals section** — give me 3 direct post links and I'll wire them in; the placeholders are one click from exposure.
 4. **Real credential URLs** for PSM I (scrum.org profile certificate link) and AZ-900 (Credly or MS Learn share link) — give me the links and I'll fix `certifications.data.ts`.
 5. **Cert sync decision**: resume shows no cloud cert (AZ-900 dropped) while claiming Azure/AWS architecture — add AZ-900 back to the PDF. Decide whether PSD I + "Google EM Foundations" go on the site (if yes, I need badge images + verify URLs; also check whether "EM Foundations" and the site's "People Management Essentials" are the same credential under two names — pick one name).
