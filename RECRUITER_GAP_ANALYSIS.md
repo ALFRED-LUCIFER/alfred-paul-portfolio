@@ -34,28 +34,32 @@ The 2026 resume is a genuinely strong document now. What remains below.
 | Portfolio repo GitHub metadata set: description, homepage (live URL), topics (`agentic-ai`, `react`, `typescript`, `threejs`, `tailwindcss`, `portfolio`) | GitHub via `gh repo edit` |
 | Verified site project metrics already match the 2026 resume (MCP: 60% L1 deflection / 100% on-prem; RAG: 800+ docs / 2 languages) — no drift | `systems/data/projects.data.ts` |
 
-### ✅ Resolved by the resume re-export (June 12)
+### ✅ Re-evaluation — June 12, verified against live site and live GitHub
 
-- **Email fixed** — the PDF now shows `alfred.v.paul@gmail.com`. The placeholder-email blocker is cleared.
-- **PDF now actually deploys** — found and fixed a hidden failure: `.gitignore` blocks `*.pdf` and its allow-rule still pointed at the deleted old filename, so the new resume was never committed and the Vercel build would have broken. Allow-rule updated, PDF tracked and pushed.
+| Item | Verified status |
+|---|---|
+| Resume email | ✅ PDF shows `alfred.v.paul@gmail.com`, downloads correctly from the **live** site (HTTP 200 on the deployed asset) |
+| Resume deploys at all | ✅ Fixed a hidden failure: `.gitignore` blocked `*.pdf` with an allow-rule for the *old* filename — the new resume was never committed and the Vercel build would have broken. Rule updated, PDF tracked, deploy verified |
+| Canonical/OG URLs | ✅ Live page serves `canonical = alfred-paul-portfolio-web.vercel.app`; Sovereign AI / UAE keywords present in deployed HTML |
+| Agent-harness Systems card | ✅ `awesome-skills-copilot` confirmed in the deployed JS bundle |
+| GitHub profile README | ✅ Repo `ALFRED-LUCIFER/ALFRED-LUCIFER` created (you), content live |
+| Portfolio repo metadata | ✅ Description, homepage, 6 topics set |
 
-### 🔴 Pending — needs YOU (I cannot do these from the codebase)
+### 🔴 Remaining — re-checked one by one (in priority order)
 
-1. **Next resume re-export (no urgency — batch these):** add the `awesome-skills-copilot` bullet (suggested text below), add **AZ-900** under certifications (resume claims Azure/AWS architecture but lists no cloud cert), rewrite experience bullets in STAR-with-scale form, and add the missing space in `gmail.com| LinkedIn`. Keep the same filename `Alfred_Paul_2026.pdf`.
-2. **Publish the GitHub profile README** (~15 min; my permission scope blocked writes outside this repo — run these yourself):
+1. **🆕 VelocityVote is PRIVATE — but your resume and profile README call it "Open-source (Apache 2.0)".** A recruiter who goes looking finds nothing; the claim reads as false. Fix: `gh repo edit ALFRED-LUCIFER/velocity-vote --visibility public` (after a quick scan for secrets/keys in its history), then add description + topics. Alternatively reword the resume bullet — but making it public is far more valuable.
+2. **GitHub profile is half-finished** (verified via API: bio is empty, **zero pinned repos**, `awesome-skills-copilot` has no description and no topics). The README without pins means your best repos are still invisible above the fold. Finish with:
    ```bash
-   # Profile README (run from any temp folder)
-   gh repo create ALFRED-LUCIFER/ALFRED-LUCIFER --public --clone
-   # copy the body of GITHUB_PROFILE_README_DRAFT.md (below the divider) into README.md, then:
-   cd ALFRED-LUCIFER && git add . && git commit -m "profile readme" && git push
-
-   # Description + topics for the flagship repo
    gh repo edit ALFRED-LUCIFER/awesome-skills-copilot \
      --description "41 agents, 56 skills, 10 hooks, 4 plugins & 23 prompts for GitHub Copilot and Claude Code — production-ready agent harness patterns against context collapse and self-evaluation blindness. MIT." \
      --add-topic agentic-ai --add-topic ai-agents --add-topic mcp --add-topic claude \
      --add-topic claude-code --add-topic github-copilot --add-topic developer-tools --add-topic prompt-engineering
+
+   gh repo edit ALFRED-LUCIFER/langchain-course --description "Hands-on LangChain / RAG learning track in Python"
+   gh repo edit ALFRED-LUCIFER/mobile-elisa --description "Cross-platform mobile app (TypeScript)"
    ```
-   Then set the profile bio and pin the 4 repos in the GitHub UI. Seriously consider renaming the account (GitHub auto-redirects old URLs).
+   Then in the GitHub UI: set the bio (suggested text is in `GITHUB_PROFILE_README_DRAFT.md`) and **pin**: `awesome-skills-copilot`, `alfred-paul-portfolio`, `velocity-vote` (once public), `langchain-course`.
+3. **Next resume re-export (batch these):** `awesome-skills-copilot` bullet (text below), **AZ-900** under certifications (resume claims Azure/AWS architecture but lists no cloud cert), STAR-with-scale experience bullets, missing space in `gmail.com| LinkedIn`. Keep the filename `Alfred_Paul_2026.pdf`.
 3. **Real LinkedIn post URLs for the Signals section** — give me 3 direct post links and I'll wire them in; the placeholders are one click from exposure.
 4. **Real credential URLs** for PSM I (scrum.org profile certificate link) and AZ-900 (Credly or MS Learn share link) — give me the links and I'll fix `certifications.data.ts`.
 5. **Cert sync decision**: resume shows no cloud cert (AZ-900 dropped) while claiming Azure/AWS architecture — add AZ-900 back to the PDF. Decide whether PSD I + "Google EM Foundations" go on the site (if yes, I need badge images + verify URLs; also check whether "EM Foundations" and the site's "People Management Essentials" are the same credential under two names — pick one name).
