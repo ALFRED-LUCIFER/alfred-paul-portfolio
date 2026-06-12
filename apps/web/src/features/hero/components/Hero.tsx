@@ -5,7 +5,7 @@ import { StatusBadge } from '../../../shared/ui/StatusBadge'
 import { Reveal } from '../../../shared/ui/Reveal'
 import { useReducedMotion } from '../../../shared/hooks/useReducedMotion'
 import { GraphFallback } from './GraphFallback'
-import resumePdf from '../../../assets/Alfred_Paul_Engineering_Manager.pdf'
+import resumePdf from '../../../assets/Alfred_Paul_2026.pdf'
 
 const OrchestrationGraph = lazy(() => import('./OrchestrationGraph'))
 

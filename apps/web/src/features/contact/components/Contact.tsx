@@ -17,7 +17,7 @@ import { SectionShell } from '../../../shared/ui/SectionShell'
 import { GlassPanel } from '../../../shared/ui/GlassPanel'
 import { Reveal } from '../../../shared/ui/Reveal'
 import { GhostLink } from '../../../shared/ui/Buttons'
-import resumePdf from '../../../assets/Alfred_Paul_Engineering_Manager.pdf'
+import resumePdf from '../../../assets/Alfred_Paul_2026.pdf'
 
 const inputClasses =
   'w-full px-4 py-3 rounded-lg border border-border bg-background/60 text-sm focus:outline-hidden focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-colors placeholder:text-muted-foreground/60'

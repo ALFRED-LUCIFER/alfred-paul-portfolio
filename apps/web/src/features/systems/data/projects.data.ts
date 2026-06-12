@@ -314,6 +314,41 @@ async function fullStackFlow(plan: Plan) {
     },
   },
   {
+    id: 15,
+    title: 'Awesome Skills Copilot — Open-Source Agent Harness',
+    description:
+      'Production-ready open-source collection of 41 agents, 56 skills, 10 hooks, 4 plugins, and 23 prompts for GitHub Copilot and Claude Code — implementing harness design patterns that prevent context collapse and self-evaluation blindness in long-running AI coding sessions.',
+    category: 'AI Development',
+    technologies: ['Claude Code', 'GitHub Copilot', 'MCP', 'Copilot CLI', 'Shell', 'JavaScript'],
+    features: [
+      '41 specialized agents: orchestrator, planner, reviewer, TDD, K8s, incident response',
+      '56 self-contained skills with assets, 23 reusable prompt templates',
+      '10 lifecycle hooks enforce tests and review on every code generation',
+      'Works across GitHub Copilot, Claude Code, and Copilot CLI — MIT licensed',
+    ],
+    liveUrl: null,
+    githubUrl: 'https://github.com/ALFRED-LUCIFER/awesome-skills-copilot',
+    featured: true,
+    status: 'prod',
+    architectureHighlight:
+      'Harness architecture: decompose work, manage context, enforce quality gates, orchestrate specialist agents',
+    aiImpact: 'Quality gates the model cannot skip — every generation triggers tests and review',
+    caseStudy: {
+      problem:
+        'Long-running AI coding sessions degrade in two predictable ways: context collapse (the model loses coherence as the window fills) and self-evaluation blindness (agents consistently overrate their own output). Ad-hoc prompting cannot fix structural failure modes.',
+      solution:
+        'Built a harness — scaffolding around the model that decomposes work across 41 specialized agents (@orchestrator, @planner, @backend, @reviewer, @playwright-tdd, @kubernetes-manifester…), packages repeatable know-how as 56 skills, and wires 10 hooks so every code generation automatically triggers tests and independent review. Published as an MIT-licensed, installable collection for GitHub Copilot, Claude Code, and Copilot CLI.',
+      impact:
+        'Public, reusable distillation of the agentic SDLC practices proven internally — teams adopt governed multi-agent workflows without rebuilding the scaffolding, and quality gates are enforced by the harness rather than by discipline.',
+      metrics: [
+        { label: 'Specialized Agents', value: '41' },
+        { label: 'Skills + Prompts', value: '56 + 23' },
+        { label: 'Quality-Gate Hooks', value: '10' },
+        { label: 'License', value: 'MIT' },
+      ],
+    },
+  },
+  {
     id: 13,
     title: 'Memory Contract for Token Optimization',
     description:
@@ -328,7 +363,7 @@ async function fullStackFlow(plan: Plan) {
     ],
     liveUrl: null,
     githubUrl: null,
-    featured: true,
+    featured: false,
     status: 'internal',
     architectureHighlight:
       'Contract-governed memory: schema-validated entries instead of free-text notes',
@@ -662,7 +697,7 @@ async function fullStackFlow(plan: Plan) {
 export const PROJECT_CATEGORIES = ['All', ...new Set(PROJECTS.map((p) => p.category))] as const
 
 /** The 8 featured systems shown in the command-center Systems section, in display order */
-const FEATURED_ORDER = [7, 6, 12, 13, 14, 8, 10, 1]
+const FEATURED_ORDER = [7, 6, 12, 15, 14, 8, 10, 1]
 
 export const FEATURED_SYSTEMS: Project[] = FEATURED_ORDER.map(
   (id) => PROJECTS.find((p) => p.id === id)!
