@@ -185,7 +185,7 @@ temp/
 *resume*
 *cv*
 !apps/web/src/features/resume/
-!apps/web/src/assets/Alfred_Paul_Engineering_Manager.pdf
+!apps/web/src/assets/Alfred_Paul_2026.pdf
 
 # Image originals (keep converted web images)
 *.HEIC
