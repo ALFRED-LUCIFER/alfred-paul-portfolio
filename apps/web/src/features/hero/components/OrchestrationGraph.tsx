@@ -234,7 +234,7 @@ function Network() {
 export default function OrchestrationGraph() {
   return (
     <Canvas
-      camera={{ position: [0, 0, 7.4], fov: 45 }}
+      camera={{ position: [0, 0, 8.2], fov: 45 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
     >
