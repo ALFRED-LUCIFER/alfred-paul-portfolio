@@ -569,7 +569,7 @@ async function fullStackFlow(plan: Plan) {
       'Multiple card decks: Fibonacci, T-shirt sizes, Powers of 2',
       'Team Polls for sprint goals, retro topics, and office votes',
     ],
-    liveUrl: 'https://velocityvote.app',
+    liveUrl: 'https://velocity-vote-web.vercel.app',
     githubUrl: 'https://github.com/ALFRED-LUCIFER',
     featured: true,
     status: 'prod',

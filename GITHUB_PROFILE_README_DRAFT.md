@@ -26,7 +26,7 @@ I build the scaffolding that makes AI-assisted engineering trustworthy: **agent 
 |---|---|
 | [awesome-skills-copilot](https://github.com/ALFRED-LUCIFER/awesome-skills-copilot) | 41 agents, 56 skills, 10 hooks, 4 plugins & 23 prompts for GitHub Copilot and Claude Code — harness patterns against context collapse and self-evaluation blindness. MIT. |
 | [alfred-paul-portfolio](https://github.com/ALFRED-LUCIFER/alfred-paul-portfolio) | This portfolio — React 19, Vite, Tailwind 4, R3F neural-graph hero, pnpm + Turborepo monorepo |
-| VelocityVote | Open-source (Apache 2.0) real-time planning poker for distributed agile teams — anonymous reveal to kill anchor bias |
+| [VelocityVote](https://velocity-vote-web.vercel.app) | Real-time planning poker for distributed agile teams — anonymous reveal to kill anchor bias. Free, no signup |
 | langchain-course | Hands-on LangChain/RAG learning track in Python |
 
 ## 🛠 Stack

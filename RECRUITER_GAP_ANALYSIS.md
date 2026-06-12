@@ -47,7 +47,7 @@ The 2026 resume is a genuinely strong document now. What remains below.
 
 ### 🔴 Remaining — re-checked one by one (in priority order)
 
-1. **🆕 VelocityVote is PRIVATE — but your resume and profile README call it "Open-source (Apache 2.0)".** A recruiter who goes looking finds nothing; the claim reads as false. Fix: `gh repo edit ALFRED-LUCIFER/velocity-vote --visibility public` (after a quick scan for secrets/keys in its history), then add description + topics. Alternatively reword the resume bullet — but making it public is far more valuable.
+1. **VelocityVote** — partially resolved: the live app URL (`velocity-vote-web.vercel.app`) is verified working and now wired into the site card *(the previous `velocityvote.app` link was a dead domain — DNS doesn't even resolve)*. **Still open:** the repo is PRIVATE while the resume and your published profile README say "Open-source (Apache 2.0)". Either `gh repo edit ALFRED-LUCIFER/velocity-vote --visibility public` (after scanning its history for secrets/keys — Pusher credentials are the likely risk) or drop "open-source/Apache 2.0" from the resume and profile README wording. Your published profile README also still shows VelocityVote without a link — the updated draft (with the live URL, "open-source" removed) is in `GITHUB_PROFILE_README_DRAFT.md`; re-paste that row.
 2. **GitHub profile is half-finished** (verified via API: bio is empty, **zero pinned repos**, `awesome-skills-copilot` has no description and no topics). The README without pins means your best repos are still invisible above the fold. Finish with:
    ```bash
    gh repo edit ALFRED-LUCIFER/awesome-skills-copilot \
