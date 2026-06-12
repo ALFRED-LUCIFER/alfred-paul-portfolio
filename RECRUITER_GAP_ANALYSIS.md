@@ -34,9 +34,14 @@ The 2026 resume is a genuinely strong document now. What remains below.
 | Portfolio repo GitHub metadata set: description, homepage (live URL), topics (`agentic-ai`, `react`, `typescript`, `threejs`, `tailwindcss`, `portfolio`) | GitHub via `gh repo edit` |
 | Verified site project metrics already match the 2026 resume (MCP: 60% L1 deflection / 100% on-prem; RAG: 800+ docs / 2 languages) — no drift | `systems/data/projects.data.ts` |
 
+### ✅ Resolved by the resume re-export (June 12)
+
+- **Email fixed** — the PDF now shows `alfred.v.paul@gmail.com`. The placeholder-email blocker is cleared.
+- **PDF now actually deploys** — found and fixed a hidden failure: `.gitignore` blocks `*.pdf` and its allow-rule still pointed at the deleted old filename, so the new resume was never committed and the Vercel build would have broken. Allow-rule updated, PDF tracked and pushed.
+
 ### 🔴 Pending — needs YOU (I cannot do these from the codebase)
 
-1. **Resume PDF email is still `alfred.paul@example.com`.** Open the source document, change to `alfred.v.paul@gmail.com`, re-export to `apps/web/src/assets/Alfred_Paul_2026.pdf` (same filename — the site now imports it). **While in there, add the `awesome-skills-copilot` bullet — suggested text below.**
+1. **Next resume re-export (no urgency — batch these):** add the `awesome-skills-copilot` bullet (suggested text below), add **AZ-900** under certifications (resume claims Azure/AWS architecture but lists no cloud cert), rewrite experience bullets in STAR-with-scale form, and add the missing space in `gmail.com| LinkedIn`. Keep the same filename `Alfred_Paul_2026.pdf`.
 2. **Publish the GitHub profile README** (~15 min; my permission scope blocked writes outside this repo — run these yourself):
    ```bash
    # Profile README (run from any temp folder)
