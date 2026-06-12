@@ -137,7 +137,7 @@ function Cluster({
           <sphereGeometry args={[0.15, 24, 24]} />
           <meshStandardMaterial ref={matRef} color={color} emissive={color} toneMapped={false} />
         </mesh>
-        <Html center distanceFactor={8} position={[0, 0.32, 0]} style={{ pointerEvents: 'none' }}>
+        <Html center distanceFactor={8} position={[0, 0.36, 0]} style={{ pointerEvents: 'none' }}>
           <span
             className="font-mono text-[11px] whitespace-nowrap transition-colors"
             style={{
@@ -171,7 +171,7 @@ function Cluster({
             <Html
               center
               distanceFactor={8}
-              position={[pos[0], pos[1] + 0.16, pos[2]]}
+              position={[pos[0], pos[1] + 0.2, pos[2]]}
               style={{ pointerEvents: 'none' }}
             >
               <span className="font-mono text-[9px] whitespace-nowrap" style={{ color }}>
@@ -202,8 +202,8 @@ function Network() {
   useFrame(({ clock, pointer }) => {
     if (!group.current) return
     const t = clock.getElapsedTime()
-    // Gentle oscillation keeps labels readable + subtle pointer parallax
-    group.current.rotation.y = Math.sin(t * 0.1) * 0.14 + pointer.x * 0.12
+    // Slow autonomous rotation + subtle pointer parallax
+    group.current.rotation.y = t * 0.07 + pointer.x * 0.12
     group.current.rotation.x = Math.sin(t * 0.07) * 0.06 + pointer.y * -0.08
   })
 
@@ -234,7 +234,7 @@ function Network() {
 export default function OrchestrationGraph() {
   return (
     <Canvas
-      camera={{ position: [0, 0, 8], fov: 45 }}
+      camera={{ position: [0, 0, 7.4], fov: 45 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
     >

@@ -73,7 +73,7 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <div className="relative h-[360px] sm:h-[420px] lg:h-[540px]">
+        <div className="relative h-[400px] sm:h-[480px] lg:h-[600px]">
           {interactive ? (
             <GraphErrorBoundary>
               <Suspense fallback={<GraphFallback />}>

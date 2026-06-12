@@ -91,9 +91,9 @@ export function leafPosition(
 ): [number, number, number] {
   const [cx, cy, cz] = cluster.position
   const outward = Math.atan2(cy, cx)
-  const fan = Math.PI * 0.85
+  const fan = Math.PI * 0.8
   const angle = outward - fan / 2 + (fan * (index + 0.5)) / total
-  const radius = 0.8
+  const radius = 0.95
   const z = cz + ((index % 3) - 1) * 0.22
   return [cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius, z]
 }
